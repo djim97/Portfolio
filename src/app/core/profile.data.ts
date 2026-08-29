@@ -15,7 +15,7 @@ export const IDENTITY = {
     "d'alternance à Dakar.",
   location: 'Dakar, Sénégal',
   school: "Institut Supérieur d'Informatique (ISI), Dakar",
-  program: "Diplôme d'Ingénieur en Techniques Informatiques DITI 3",
+  program: "Diplôme d'Ingénieur en Techniques Informatiques",
   email: 'dbadjidk@groupeisi.com',
   github: 'https://github.com/djim97',
   linkedin: 'https://www.linkedin.com/in/djimouna',         
