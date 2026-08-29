@@ -18,9 +18,9 @@ export const IDENTITY = {
   program: "Diplôme d'Ingénieur en Techniques Informatiques — DITI 3",
   email: 'dbadjidk@groupeisi.com',
   github: 'https://github.com/djim97',
-  linkedin: 'www.linkedin.com/in/djimouna',          // a renseigner
+  linkedin: 'www.linkedin.com/in/djimouna',         
   cvUrl: '/cv-djimouna-badji.pdf',
-  avatar: 'https://avatars.githubusercontent.com/u/255569156?v=4',
+  avatar: 'photo.jpg',
 };
 
 export const ABOUT: string[] = [

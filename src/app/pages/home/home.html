@@ -1,20 +1,27 @@
 <section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ id.eyebrow }}</p>
-    <h1 class="hero-name">{{ id.name }}</h1>
-    <p class="hero-tagline lead">{{ id.tagline }}</p>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">{{ id.eyebrow }}</p>
+      <h1 class="hero-name">{{ id.name }}</h1>
+      <p class="hero-tagline lead">{{ id.tagline }}</p>
 
-    <div class="hero-actions">
-      <a routerLink="/projets" class="btn btn-primary">Voir mes projets</a>
-      <a [href]="id.cvUrl" class="btn btn-ghost" download>Télécharger mon CV</a>
+      <div class="hero-actions">
+        <a routerLink="/projets" class="btn btn-primary">Voir mes projets</a>
+        <a [href]="id.cvUrl" class="btn btn-ghost" download>Télécharger mon CV</a>
+      </div>
+
+      @if (liveCount() !== null) {
+        <p class="live" role="status">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="meta">l'API de démonstration répond — {{ liveCount() }} projet{{ liveCount()! > 1 ? 's' : '' }} en base</span>
+        </p>
+      }
     </div>
 
-    @if (liveCount() !== null) {
-      <p class="live" role="status">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span class="meta">l'API de démonstration répond — {{ liveCount() }} projets en base</span>
-      </p>
-    }
+    <figure class="hero-photo">
+      <img [src]="id.avatar" [alt]="'Portrait de ' + id.name"
+           width="400" height="500" fetchpriority="high">
+    </figure>
   </div>
 </section>
 
