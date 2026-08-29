@@ -1,59 +1,59 @@
-# Portfolio
+# Portfolio — Djimouna Bacary Badji
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.22.
+Site personnel en Angular 21, prérendu en statique, déployé sur `bacary.gt.tc`
+(Apache mutualisé, sans Node).
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Développer
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Le proxy (`proxy.conf.json`) redirige `/php/...` vers `bacary.gt.tc`, donc la
+page `/demo` fonctionne en local sans base MySQL.
+
+## Builder et déployer
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+Le build génère `dist/portfolio/browser/` avec un fichier HTML prérendu par
+route (`/`, `/projets`, `/demo`). Envoie **le contenu** de ce dossier — pas le
+dossier lui-même — à la racine de `htdocs` par FTP.
 
-To build the project run:
+Conserve `htdocs/php/` tel quel : c'est l'API que consomme la page `/demo`.
+Le `.htaccess` livré exclut ce dossier de la réécriture.
 
-```bash
-ng build
-```
+Le build a besoin d'un accès réseau : Angular télécharge les polices Google au
+moment de la compilation pour les intégrer au CSS. Sans réseau, la compilation
+échoue avec une erreur d'inlining.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Mettre à jour le contenu
 
-## Running unit tests
+Tout est dans `src/app/core/profile.data.ts` :
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `IDENTITY` — nom, formation, email, liens, chemin du CV
+- `ABOUT` — paragraphes de la section « à propos »
+- `SKILLS` — compétences groupées par domaine
+- `PROJECTS` — projets ; `featured: true` les fait remonter sur l'accueil
 
-```bash
-ng test
-```
+Aucun composant à ouvrir pour ajouter un projet.
 
-## Running end-to-end tests
+## Reste à faire
 
-For end-to-end (e2e) testing, run:
+- Renseigner `IDENTITY.linkedin` (le bouton ne s'affiche pas tant qu'il est vide)
+- Déposer `cv-djimouna-badji.pdf` à la racine de `htdocs`
+- Créer `og-image.png` (1200 × 630) à la racine, pour l'aperçu des liens partagés
+- Ajouter les `repoUrl` des projets dont le code est public
+- Relire les descriptions de projets et les reformuler avec tes mots
 
-```bash
-ng e2e
-```
+## Sécurité — avant de publier
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. `php/db.php` contient les identifiants MySQL en dur. Ajoute-le au
+   `.gitignore` et versionne un `db.example.php` sans les valeurs.
+2. `php/db.php` envoie `Access-Control-Allow-Origin: *` et les endpoints
+   `create.php`, `update.php` et `delete.php` n'exigent aucune authentification.
+   La page `/demo` ne fait que de la lecture : retire ces trois fichiers du
+   serveur, ou protège l'écriture par un jeton.

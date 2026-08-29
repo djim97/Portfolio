@@ -1,1 +1,154 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   Tokens de l'identite visuelle
+   ============================================================ */
+:root {
+  /* Couleurs */
+  --ink:        #12100E;   /* fond principal */
+  --surface:    #1B1815;   /* cartes, encarts */
+  --surface-2:  #221E1A;   /* survol */
+  --line:       #2B2724;   /* filets, bordures */
+  --line-warm:  #3A2B22;   /* bordures des tags */
+  --sand:       #F2EDE4;   /* texte principal */
+  --gray:       #A69B8C;   /* texte secondaire */
+  --earth:      #D4642A;   /* accent principal */
+  --earth-dim:  #A84D1F;   /* accent au survol */
+  --lagoon:     #2E7D6B;   /* accent secondaire : statuts, dates */
+
+  /* Typographie */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SFMono-Regular', monospace;
+
+  /* Echelle typographique */
+  --t-hero:  clamp(2.25rem, 6vw, 3.75rem);
+  --t-h2:    clamp(1.5rem, 3.5vw, 2rem);
+  --t-h3:    1.125rem;
+  --t-body:  1rem;
+  --t-small: 0.875rem;
+  --t-mono:  0.75rem;
+
+  /* Rythme */
+  --gap:      1rem;
+  --gap-lg:   2rem;
+  --section:  clamp(4rem, 10vw, 7rem);
+  --radius:   10px;
+  --radius-lg: 14px;
+  --measure:  62ch;
+  --wrap:     1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--sand);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p { margin: 0 0 1rem; max-width: var(--measure); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   Utilitaires partages
+   ============================================================ */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.section { padding-block: var(--section); }
+
+/* Etiquette monospace qui ouvre chaque section */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--earth);
+  margin-bottom: 0.75rem;
+}
+
+.lead { color: var(--gray); font-size: 1.0625rem; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--radius);
+  font-size: var(--t-small);
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.btn-primary { background: var(--earth); color: var(--ink); }
+.btn-primary:hover { background: var(--earth-dim); color: var(--sand); }
+.btn-ghost { border-color: var(--line); color: var(--sand); }
+.btn-ghost:hover { border-color: var(--earth); color: var(--earth); }
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  color: var(--earth);
+  border: 1px solid var(--line-warm);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  color: var(--lagoon);
+}
+
+/* Accessibilite */
+:focus-visible {
+  outline: 2px solid var(--earth);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--earth);
+  color: var(--ink);
+  padding: 0.75rem 1.25rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

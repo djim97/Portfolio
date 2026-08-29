@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">projets</p>
+    <h2>Ce que j'ai construit</h2>
+    <p class="lead intro">
+      Travaux d'école, projets d'équipe et projets personnels. Chaque fiche indique la pile
+      technique réellement utilisée.
+    </p>
+
+    <div class="grid">
+      @for (project of projects; track project.slug) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+
+    <p class="outro">
+      Mes exercices d'algorithmique et de langage C restent accessibles sur
+      <a [href]="id.github" target="_blank" rel="noopener" class="outro-link">mon GitHub</a>.
+    </p>
+  </div>
+</section>

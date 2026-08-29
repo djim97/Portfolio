@@ -1,0 +1,12 @@
+.intro { max-width: 52ch; margin-top: 1rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.outro { margin-top: 2.5rem; color: var(--gray); font-size: var(--t-small); }
+.outro-link { color: var(--earth); border-bottom: 1px solid var(--line-warm); }
+.outro-link:hover { border-bottom-color: var(--earth); }

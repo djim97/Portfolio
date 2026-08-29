@@ -1,0 +1,29 @@
+<article class="card">
+  <header class="card-head">
+    <h3>{{ project().name }}</h3>
+    <span class="meta">{{ project().status }}</span>
+  </header>
+
+  <p class="card-summary">{{ project().summary }}</p>
+
+  <ul class="stack" aria-label="Technologies utilisées">
+    @for (tech of project().stack; track tech) {
+      <li class="tag">{{ tech }}</li>
+    }
+  </ul>
+
+  @if (project().liveUrl || project().repoUrl) {
+    <div class="card-links">
+      @if (project().liveUrl) {
+        @if (isInternal(project().liveUrl!)) {
+          <a [routerLink]="project().liveUrl" class="card-link">Ouvrir la démo</a>
+        } @else {
+          <a [href]="project().liveUrl" target="_blank" rel="noopener" class="card-link">Voir en ligne</a>
+        }
+      }
+      @if (project().repoUrl) {
+        <a [href]="project().repoUrl" target="_blank" rel="noopener" class="card-link">Code source</a>
+      }
+    </div>
+  }
+</article>

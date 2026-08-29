@@ -1,0 +1,90 @@
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ id.eyebrow }}</p>
+    <h1 class="hero-name">{{ id.name }}</h1>
+    <p class="hero-tagline lead">{{ id.tagline }}</p>
+
+    <div class="hero-actions">
+      <a routerLink="/projets" class="btn btn-primary">Voir mes projets</a>
+      <a [href]="id.cvUrl" class="btn btn-ghost" download>Télécharger mon CV</a>
+    </div>
+
+    @if (liveCount() !== null) {
+      <p class="live" role="status">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="meta">l'API de démonstration répond — {{ liveCount() }} projets en base</span>
+      </p>
+    }
+  </div>
+</section>
+
+<section class="section" id="apropos">
+  <div class="wrap">
+    <p class="eyebrow">à propos</p>
+    <h2>Qui je suis</h2>
+    <div class="about">
+      <div class="about-text">
+        @for (paragraph of about; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Formation</dt><dd>{{ id.program }}</dd></div>
+        <div class="fact"><dt>École</dt><dd>{{ id.school }}</dd></div>
+        <div class="fact"><dt>Localisation</dt><dd>{{ id.location }}</dd></div>
+        <div class="fact"><dt>Disponibilité</dt><dd>Alternance à Dakar</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="competences">
+  <div class="wrap">
+    <p class="eyebrow">compétences</p>
+    <h2>Ce avec quoi je travaille</h2>
+    <div class="skills">
+      @for (group of skills; track group.label) {
+        <div class="skill-group">
+          <h3 class="skill-label">{{ group.label }}</h3>
+          <ul class="skill-items">
+            @for (item of group.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projets">
+  <div class="wrap">
+    <p class="eyebrow">projets</p>
+    <h2>Une sélection</h2>
+    <div class="grid">
+      @for (project of featured; track project.slug) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+    <p class="more">
+      <a routerLink="/projets" class="card-more">Voir tous les projets</a>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">contact</p>
+    <h2>Parlons-en</h2>
+    <p class="lead">
+      Je suis disponible pour une alternance à Dakar. Écrivez-moi, je réponds sous 48 heures.
+    </p>
+    <div class="contact-links">
+      <a [href]="'mailto:' + id.email" class="btn btn-primary">{{ id.email }}</a>
+      <a [href]="id.github" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      @if (id.linkedin) {
+        <a [href]="id.linkedin" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      }
+    </div>
+  </div>
+</section>

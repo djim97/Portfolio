@@ -1,0 +1,25 @@
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a routerLink="/" class="mark" (click)="close()">
+      <span class="mark-initials">db</span>
+      <span class="sr-only">Retour à l'accueil</span>
+    </a>
+
+    <button
+      class="burger"
+      type="button"
+      [attr.aria-expanded]="open()"
+      aria-controls="nav-principal"
+      aria-label="Ouvrir le menu"
+      (click)="toggle()">
+      <span></span><span></span>
+    </button>
+
+    <nav id="nav-principal" class="nav" [class.is-open]="open()" aria-label="Navigation principale">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Accueil</a>
+      <a routerLink="/projets" routerLinkActive="active" (click)="close()">Projets</a>
+      <a routerLink="/demo" routerLinkActive="active" (click)="close()">Démo</a>
+      <a [routerLink]="['/']" fragment="contact" (click)="close()">Contact</a>
+    </nav>
+  </div>
+</header>
