@@ -8,17 +8,17 @@ import { Project, SkillGroup } from './models';
 export const IDENTITY = {
   name: 'Djimouna Bacary BADJI',
   role: 'Élève ingénieur en informatique',
-  eyebrow: 'Ingénierie logicielle / dakar',
+  eyebrow: 'ingénierie logicielle / dakar',
   tagline:
     "1ᵉʳᵉ année du cycle ingénieur à l'ISI. Je construis des applications web Angular, " +
     'des applications métier Java, C, C++ et des infrastructures réseau. En recherche ' +
     "d'alternance à Dakar.",
   location: 'Dakar, Sénégal',
   school: "Institut Supérieur d'Informatique (ISI), Dakar",
-  program: "Diplôme d'Ingénieur en Techniques Informatiques — DITI 3",
+  program: "Diplôme d'Ingénieur en Techniques Informatiques DITI 3",
   email: 'dbadjidk@groupeisi.com',
   github: 'https://github.com/djim97',
-  linkedin: 'www.linkedin.com/in/djimouna',         
+  linkedin: 'https://www.linkedin.com/in/djimouna',         
   cvUrl: '/cv-djimouna-badji.pdf',
   avatar: '/photo.jpg',
 };
@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
       'facturation multidevise, suivi de livraison, avis bidirectionnels et gestion des réclamations. ' +
       'Conçue de zéro, des maquettes Figma jusqu’à l’application.',
     stack: ['Angular 20', 'TypeScript', 'Figma'],
-    repoUrl: 'https://github.com/djim97/Agregateur_GP.git',
+    repoUrl: 'https://github.com/djim97/Agregateur_GP',
     featured: true,
   },
   {
@@ -76,7 +76,7 @@ export const PROJECTS: Project[] = [
       'Application de bureau pour la gestion d’une institution de microfinance : cycle de prêt ' +
       'complet, modèle persisté via Hibernate. Projet de fin de module, livré avec documentation et diagrammes.',
     stack: ['Java', 'JavaFX', 'Hibernate', 'PostgreSQL', 'Maven'],
-    repoUrl: 'https://gitlab.com/djim97/microgest.git',
+    repoUrl: 'https://gitlab.com/djim97/microgest',
     featured: true,
   },
   {
@@ -85,7 +85,8 @@ export const PROJECTS: Project[] = [
     status: 'démo en ligne',
     summary:
       'Application de gestion de projets et d’affectations : quatre entités, API REST en PHP avec ' +
-      'requêtes préparées, tableau de bord statistique. Le front est intégré à ce portfolio.',
+      'requêtes préparées, tableau de bord statistique et interface complète de création, ' +
+      'modification et suppression.',
     stack: ['Angular', 'PHP', 'MySQL', 'REST'],
     liveUrl: 'https://bacary.gt.tc/html/crud.html',
     featured: true,
@@ -99,7 +100,7 @@ export const PROJECTS: Project[] = [
       'Pipeline de build et de déploiement automatisé : exécution des tests sur un runner ' +
       'auto-hébergé, construction de l’image et publication sur Docker Hub à chaque push.',
     stack: ['GitHub Actions', 'Docker', 'PowerShell'],
-    repoUrl: 'https://github.com/djim97/html5up-forty.git',
+    repoUrl: 'https://github.com/djim97/html5up-forty',
     featured: false,
   },
     {
