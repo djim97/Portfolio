@@ -1,8 +1,0 @@
-{
-  "/php": {
-    "target": "https://bacary.gt.tc",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}
