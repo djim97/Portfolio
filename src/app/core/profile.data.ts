@@ -20,7 +20,7 @@ export const IDENTITY = {
   github: 'https://github.com/djim97',
   linkedin: 'www.linkedin.com/in/djimouna',         
   cvUrl: '/cv-djimouna-badji.pdf',
-  avatar: 'photo.jpg',
+  avatar: '/photo.jpg',
 };
 
 export const ABOUT: string[] = [
@@ -87,7 +87,7 @@ export const PROJECTS: Project[] = [
       'Application de gestion de projets et d’affectations : quatre entités, API REST en PHP avec ' +
       'requêtes préparées, tableau de bord statistique. Le front est intégré à ce portfolio.',
     stack: ['Angular', 'PHP', 'MySQL', 'REST'],
-    liveUrl: '/demo',
+    liveUrl: 'https://bacary.gt.tc/html/crud.html',
     featured: true,
   },
   

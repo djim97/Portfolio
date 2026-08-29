@@ -32,15 +32,6 @@
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-.live { display: flex; align-items: center; gap: 0.5rem; margin: 2rem 0 0; }
-
-.live-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--lagoon);
-  flex: none;
-}
-
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-photo { order: -1; max-width: 200px; }

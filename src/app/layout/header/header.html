@@ -18,7 +18,6 @@
     <nav id="nav-principal" class="nav" [class.is-open]="open()" aria-label="Navigation principale">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Accueil</a>
       <a routerLink="/projets" routerLinkActive="active" (click)="close()">Projets</a>
-      <a routerLink="/demo" routerLinkActive="active" (click)="close()">Démo</a>
       <a [routerLink]="['/']" fragment="contact" (click)="close()">Contact</a>
     </nav>
   </div>

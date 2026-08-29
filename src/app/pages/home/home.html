@@ -9,13 +9,6 @@
         <a routerLink="/projets" class="btn btn-primary">Voir mes projets</a>
         <a [href]="id.cvUrl" class="btn btn-ghost" download>Télécharger mon CV</a>
       </div>
-
-      @if (liveCount() !== null) {
-        <p class="live" role="status">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span class="meta">l'API de démonstration répond — {{ liveCount() }} projet{{ liveCount()! > 1 ? 's' : '' }} en base</span>
-        </p>
-      }
     </div>
 
     <figure class="hero-photo">
