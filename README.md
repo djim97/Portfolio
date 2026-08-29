@@ -1,59 +1,80 @@
 # Portfolio — Djimouna Bacary Badji
 
-Site personnel en Angular 21, prérendu en statique, déployé sur `bacary.gt.tc`
-(Apache mutualisé, sans Node).
+Site personnel construit avec Angular 21 et prérendu en statique, déployé sur
+[bacary.gt.tc](https://bacary.gt.tc).
 
-## Développer
+Élève Ingénieur en 1ᵉʳᵉ année à l'ISI Dakar. Applications métier Java, C et C++,
+administration réseaux, systèmes et bases de données.
+
+---
+
+## Choix techniques
+
+**Prérendu statique plutôt que SSR.** L'hébergement cible est un Apache
+mutualisé, sans Node. L'option `outputMode: "static"` génère un fichier HTML par
+route au moment du build, ce qui donne un vrai contenu aux moteurs de recherche
+et aux aperçus de liens sans exiger de serveur applicatif.
+
+**Contenu séparé du code.** Tout le contenu éditable — identité, parcours,
+compétences, projets — est regroupé dans `src/app/core/profile.data.ts`. Ajouter
+un projet consiste à ajouter un objet à un tableau, sans ouvrir un seul
+composant.
+
+**Intégration d'une API REST existante.** La route `/demo` consomme en direct
+l'API PHP du projet Gestion de Projets, hébergée sur le même domaine. La page
+d'accueil interroge cette même API pour afficher un indicateur d'état, côté
+navigateur uniquement afin de ne pas figer la valeur au prérendu.
+
+## Pile
+
+- Angular 21, composants standalone, signaux, flux de contrôle `@if` / `@for`
+- Prérendu statique via `@angular/ssr`
+- CSS natif avec système de tokens dans `src/styles.css`
+- Déploiement Apache, réécriture des routes par `.htaccess`
+
+## Structure
+
+```
+src/
+├── app/
+│   ├── core/           modèles, données du profil, service API
+│   ├── layout/         en-tête, pied de page
+│   ├── pages/          accueil, projets, démo
+│   └── shared/         carte projet réutilisable
+├── styles.css          tokens de l'identité visuelle
+└── index.html          métadonnées, Open Graph
+public/
+└── .htaccess           réécriture des routes vers index.html
+```
+
+## Démarrer
 
 ```bash
 npm install
 npm start
 ```
 
-Le proxy (`proxy.conf.json`) redirige `/php/...` vers `bacary.gt.tc`, donc la
-page `/demo` fonctionne en local sans base MySQL.
+Le proxy défini dans `proxy.conf.json` redirige `/php/...` vers le domaine de
+production, ce qui permet de développer la page `/demo` sans base MySQL locale.
 
-## Builder et déployer
+## Builder
 
 ```bash
 npm run build
 ```
 
-Le build génère `dist/portfolio/browser/` avec un fichier HTML prérendu par
-route (`/`, `/projets`, `/demo`). Envoie **le contenu** de ce dossier — pas le
-dossier lui-même — à la racine de `htdocs` par FTP.
+La sortie se trouve dans `dist/portfolio/browser/`, avec un `index.html` par
+route. Le build nécessite un accès réseau : les polices Google sont téléchargées
+à la compilation pour être intégrées au CSS.
 
-Conserve `htdocs/php/` tel quel : c'est l'API que consomme la page `/demo`.
-Le `.htaccess` livré exclut ce dossier de la réécriture.
+## Déployer
 
-Le build a besoin d'un accès réseau : Angular télécharge les polices Google au
-moment de la compilation pour les intégrer au CSS. Sans réseau, la compilation
-échoue avec une erreur d'inlining.
+Envoyer le contenu de `dist/portfolio/browser/` à la racine du dossier web.
+Le `.htaccess` est copié automatiquement depuis `public/`, mais la plupart des
+clients FTP masquent les fichiers commençant par un point — vérifier qu'il est
+bien transféré, sans lui toutes les routes renvoient une 404.
 
-## Mettre à jour le contenu
+## Licence
 
-Tout est dans `src/app/core/profile.data.ts` :
-
-- `IDENTITY` — nom, formation, email, liens, chemin du CV
-- `ABOUT` — paragraphes de la section « à propos »
-- `SKILLS` — compétences groupées par domaine
-- `PROJECTS` — projets ; `featured: true` les fait remonter sur l'accueil
-
-Aucun composant à ouvrir pour ajouter un projet.
-
-## Reste à faire
-
-- Renseigner `IDENTITY.linkedin` (le bouton ne s'affiche pas tant qu'il est vide)
-- Déposer `cv-djimouna-badji.pdf` à la racine de `htdocs`
-- Créer `og-image.png` (1200 × 630) à la racine, pour l'aperçu des liens partagés
-- Ajouter les `repoUrl` des projets dont le code est public
-- Relire les descriptions de projets et les reformuler avec tes mots
-
-## Sécurité — avant de publier
-
-1. `php/db.php` contient les identifiants MySQL en dur. Ajoute-le au
-   `.gitignore` et versionne un `db.example.php` sans les valeurs.
-2. `php/db.php` envoie `Access-Control-Allow-Origin: *` et les endpoints
-   `create.php`, `update.php` et `delete.php` n'exigent aucune authentification.
-   La page `/demo` ne fait que de la lecture : retire ces trois fichiers du
-   serveur, ou protège l'écriture par un jeton.
+Le code est libre de consultation et de réutilisation. Le contenu textuel, les
+descriptions de projets et l'identité visuelle restent la propriété de l'auteur.
