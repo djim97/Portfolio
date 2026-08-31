@@ -87,12 +87,7 @@
 
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-photo { order: -1; max-width: 220px; }
-
-  /* Le cadre decale a besoin d'air : a cette largeur il donne surtout
-     l'impression d'une image mal alignee. On le repasse en anneau concentrique. */
-  .photo-shell::after { inset: -7px; transform: none; opacity: 0.4; }
-  .hero-photo:hover .photo-shell::after { transform: none; opacity: 0.7; }
+  .hero-photo { order: -1; max-width: 200px; margin-inline: auto; }
 }
 
 /* ---------- A propos ---------- */
