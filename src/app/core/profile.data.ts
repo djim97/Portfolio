@@ -25,7 +25,7 @@ export const IDENTITY = {
 
 export const ABOUT: string[] = [
   "Je suis en première année du cycle ingénieur en techniques informatiques à l'ISI, " +
-    'une formation centrée sur le génie logiciel, les systèmes d’information, l’administration, ' +
+    'une formation centrée sur le génie logiciel, les systèmes d’information, l’administration ' +
     'réseaux, systèmes et bases de données.',
   "Concrètement, je passe l'essentiel de mon temps sur du développement web avec Angular " +
     'et sur des applications métier en Java, C, C++. Je travaille aussi régulièrement sur ' +
