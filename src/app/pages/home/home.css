@@ -88,6 +88,11 @@
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-photo { order: -1; max-width: 200px; margin-inline: auto; }
+
+  /* La pastille est en inline-flex : il faut la passer en bloc de la largeur
+     de son contenu pour que les marges auto la centrent. */
+  .status-pill { display: flex; width: fit-content; margin-inline: auto; }
+  .hero-actions { justify-content: center; }
 }
 
 /* ---------- A propos ---------- */
@@ -230,4 +235,12 @@
 
 @media (max-width: 780px) {
   .about { grid-template-columns: 1fr; }
+}
+
+/* Competences centrees quand les colonnes se resserrent sur telephone.
+   Le tiret de survol et le decalage lateral n'ont plus de sens centres. */
+@media (max-width: 640px) {
+  .skill-group { text-align: center; }
+  .skill-items li::before { display: none; }
+  .skill-items li:hover { transform: none; }
 }
