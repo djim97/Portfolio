@@ -1,3 +1,5 @@
+:host { display: block; animation: page-in 0.5s var(--ease-out) both; }
+
 .intro { max-width: 52ch; margin-top: 1rem; }
 
 .grid {
@@ -8,5 +10,14 @@
 }
 
 .outro { margin-top: 2.5rem; color: var(--gray); font-size: var(--t-small); }
-.outro-link { color: var(--earth); border-bottom: 1px solid var(--line-warm); }
+
+.outro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--earth);
+  border-bottom: 1px solid var(--line-warm);
+  transition: border-color 0.25s ease;
+}
 .outro-link:hover { border-bottom-color: var(--earth); }
+.outro-link:hover .arrow { transform: translateX(3px); }

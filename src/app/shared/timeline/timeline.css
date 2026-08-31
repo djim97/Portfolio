@@ -1,0 +1,96 @@
+:host { display: block; }
+
+.timeline {
+  position: relative;
+  margin-top: 2.5rem;
+  padding-left: 2rem;
+}
+
+/* Rail gris continu + trait d'accent qui suit le defilement */
+.rail {
+  position: absolute;
+  left: 5px;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: var(--line);
+}
+.rail-live {
+  background: linear-gradient(180deg, var(--earth), var(--lagoon));
+  transform: scaleY(var(--through, 0));
+  transform-origin: top;
+}
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; }
+
+.step {
+  position: relative;
+  transition: transform 0.3s var(--ease-out);
+}
+.step:hover { transform: translateX(4px); }
+
+/* Pastille sur le rail */
+.dot {
+  position: absolute;
+  left: -2rem;
+  top: 0.55rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px solid var(--line-warm);
+  transition: border-color 0.25s ease, background-color 0.25s ease,
+              transform 0.3s var(--ease-out);
+}
+.step:hover .dot { border-color: var(--earth); background: var(--earth); transform: scale(1.25); }
+
+/* L'etape en cours pulse, comme la pastille de disponibilite */
+.dot.is-current { background: var(--lagoon); border-color: var(--lagoon); }
+.dot.is-current::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: var(--lagoon);
+  animation: ping 2.6s var(--ease-out) infinite;
+}
+
+.step-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  margin-bottom: 0.35rem;
+}
+.step-period { margin: 0; }
+
+.step-kind {
+  color: var(--gray);
+  border-color: var(--line);
+  text-transform: lowercase;
+}
+.step:hover .step-kind { color: var(--earth); border-color: var(--line-warm); }
+
+.step-title {
+  font-size: var(--t-h3);
+  transition: color 0.25s ease;
+}
+.step:hover .step-title { color: var(--earth); }
+
+.step-org {
+  margin: 0.15rem 0 0;
+  font-size: var(--t-small);
+  color: var(--sand);
+}
+
+.step-details {
+  margin: 0.5rem 0 0;
+  font-size: var(--t-small);
+  color: var(--gray);
+  max-width: 60ch;
+}
+
+@media (max-width: 520px) {
+  .timeline { padding-left: 1.5rem; }
+  .dot { left: -1.5rem; }
+}

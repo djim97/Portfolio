@@ -1,50 +1,94 @@
-<section class="hero">
+<section class="hero dotted">
+  <div class="aura" aria-hidden="true"><span></span><span></span></div>
+
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow">{{ id.eyebrow }}</p>
-      <h1 class="hero-name">{{ id.name }}</h1>
-      <p class="hero-tagline lead">{{ id.tagline }}</p>
+      <p class="status-pill hero-rise" style="--d: 60ms">
+        <span class="status-dot" aria-hidden="true"></span>
+        Disponible en alternance
+      </p>
 
-      <div class="hero-actions">
-        <a routerLink="/projets" class="btn btn-primary">Voir mes projets</a>
-        <a [href]="id.cvUrl" class="btn btn-ghost" download>Télécharger mon CV</a>
+      <p class="eyebrow hero-rise" style="--d: 140ms">{{ id.eyebrow }}</p>
+
+      <h1 class="hero-name">
+        <span class="sr-only">{{ id.name }}</span>
+        @for (word of nameWords; track $index) {
+          <span class="word" aria-hidden="true">
+            @for (letter of word.chars; track letter.index) {
+              <span class="char" [style.--i]="letter.index">{{ letter.char }}</span>
+            }
+          </span>
+        }
+      </h1>
+
+      <p class="hero-tagline lead hero-rise" style="--d: 700ms">{{ id.tagline }}</p>
+
+      <div class="hero-actions hero-rise" style="--d: 800ms">
+        <a routerLink="/projets" class="btn btn-primary">
+          Voir mes projets <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a [href]="id.cvUrl" class="btn btn-ghost" download>
+          <app-icon name="download" />
+          Télécharger mon CV
+        </a>
       </div>
     </div>
 
-    <figure class="hero-photo">
-      <img [src]="id.avatar" [alt]="'Portrait de ' + id.name"
-           width="400" height="500" fetchpriority="high">
+    <figure class="hero-photo hero-rise" style="--d: 320ms">
+      <span class="photo-shell" [appParallax]="0.05">
+        <img [src]="id.avatar" [alt]="'Portrait de ' + id.name"
+             width="400" height="500" fetchpriority="high">
+      </span>
     </figure>
   </div>
 </section>
 
+<!-- Bandeau des technologies, en defilement continu -->
+<div class="marquee" aria-hidden="true">
+  @for (pass of [1, 2]; track pass) {
+    <div class="marquee-track">
+      @for (tech of marquee; track tech) {
+        <span class="marquee-item">{{ tech }}</span>
+      }
+    </div>
+  }
+</div>
+
 <section class="section" id="apropos">
   <div class="wrap">
-    <p class="eyebrow">à propos</p>
-    <h2>Qui je suis</h2>
+    <p class="eyebrow" appReveal>à propos</p>
+    <h2 appReveal [revealDelay]="60">Qui je suis</h2>
     <div class="about">
       <div class="about-text">
         @for (paragraph of about; track $index) {
-          <p>{{ paragraph }}</p>
+          <p appReveal [revealDelay]="$index * 90">{{ paragraph }}</p>
         }
       </div>
       <dl class="facts">
-        <div class="fact"><dt>Formation</dt><dd>{{ id.program }}</dd></div>
-        <div class="fact"><dt>École</dt><dd>{{ id.school }}</dd></div>
-        <div class="fact"><dt>Localisation</dt><dd>{{ id.location }}</dd></div>
-        <div class="fact"><dt>Disponibilité</dt><dd>Alternance à Dakar</dd></div>
+        <div class="fact" appReveal="right"><dt>Formation</dt><dd>{{ id.program }}</dd></div>
+        <div class="fact" appReveal="right" [revealDelay]="80"><dt>École</dt><dd>{{ id.school }}</dd></div>
+        <div class="fact" appReveal="right" [revealDelay]="160"><dt>Localisation</dt><dd>{{ id.location }}</dd></div>
+        <div class="fact" appReveal="right" [revealDelay]="240"><dt>Disponibilité</dt><dd>Alternance à Dakar</dd></div>
       </dl>
     </div>
   </div>
 </section>
 
+<section class="section" id="parcours">
+  <div class="wrap">
+    <p class="eyebrow" appReveal>parcours</p>
+    <h2 appReveal [revealDelay]="60">Ce qui m'a mené ici</h2>
+    <app-timeline [entries]="parcours" />
+  </div>
+</section>
+
 <section class="section" id="competences">
   <div class="wrap">
-    <p class="eyebrow">compétences</p>
-    <h2>Ce avec quoi je travaille</h2>
+    <p class="eyebrow" appReveal>compétences</p>
+    <h2 appReveal [revealDelay]="60">Ce avec quoi je travaille</h2>
     <div class="skills">
       @for (group of skills; track group.label) {
-        <div class="skill-group">
+        <div class="skill-group" appReveal [revealDelay]="$index * 70">
           <h3 class="skill-label">{{ group.label }}</h3>
           <ul class="skill-items">
             @for (item of group.items; track item) {
@@ -59,31 +103,43 @@
 
 <section class="section" id="projets">
   <div class="wrap">
-    <p class="eyebrow">projets</p>
-    <h2>Une sélection</h2>
+    <p class="eyebrow" appReveal>projets</p>
+    <h2 appReveal [revealDelay]="60">Une sélection</h2>
     <div class="grid">
       @for (project of featured; track project.slug) {
-        <app-project-card [project]="project" />
+        <app-project-card [project]="project" appReveal [revealDelay]="($index % 3) * 90" />
       }
     </div>
-    <p class="more">
-      <a routerLink="/projets" class="card-more">Voir tous les projets</a>
+    <p class="more" appReveal>
+      <a routerLink="/projets" class="card-more">
+        Voir tous les projets <span class="arrow" aria-hidden="true">→</span>
+      </a>
     </p>
   </div>
 </section>
 
-<section class="section" id="contact">
-  <div class="wrap">
-    <p class="eyebrow">contact</p>
-    <h2>Parlons-en</h2>
-    <p class="lead">
+<section class="section contact dotted" id="contact">
+  <div class="aura" aria-hidden="true"><span></span><span></span></div>
+  <div class="wrap contact-inner">
+    <p class="eyebrow" appReveal>contact</p>
+    <h2 appReveal [revealDelay]="60">Parlons-en</h2>
+    <p class="lead" appReveal [revealDelay]="120">
       Je suis disponible pour une alternance à Dakar. Écrivez-moi, je réponds sous 48 heures.
     </p>
-    <div class="contact-links">
-      <a [href]="'mailto:' + id.email" class="btn btn-primary">{{ id.email }}</a>
-      <a [href]="id.github" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    <div class="contact-links" appReveal [revealDelay]="180">
+      <a [href]="'mailto:' + id.email" class="btn btn-primary">
+        <app-icon name="mail" />
+        {{ id.email }} <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a [href]="id.github" target="_blank" rel="noopener" class="btn btn-ghost">
+        <app-icon name="github" />
+        GitHub <span class="arrow" aria-hidden="true">↗</span>
+      </a>
       @if (id.linkedin) {
-        <a [href]="id.linkedin" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a [href]="id.linkedin" target="_blank" rel="noopener" class="btn btn-ghost">
+          <app-icon name="linkedin" />
+          LinkedIn <span class="arrow" aria-hidden="true">↗</span>
+        </a>
       }
     </div>
   </div>

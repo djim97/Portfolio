@@ -1,0 +1,15 @@
+<button
+  class="toggle"
+  type="button"
+  [class.is-light]="isLight()"
+  [attr.aria-label]="isLight() ? 'Passer en thème sombre' : 'Passer en thème clair'"
+  [attr.aria-pressed]="isLight()"
+  (click)="toggle()">
+  <span class="orb" aria-hidden="true">
+    <!-- Le disque devient croissant en glissant l'ombre par-dessus -->
+    <span class="disc"></span>
+    <span class="rays">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+  </span>
+</button>

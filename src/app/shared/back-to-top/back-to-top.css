@@ -1,0 +1,60 @@
+.top {
+  position: fixed;
+  right: clamp(1rem, 4vw, 2rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--sand);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px) scale(0.85);
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
+              border-color 0.25s ease, color 0.25s ease;
+}
+.top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.top:hover { color: var(--earth); border-color: var(--earth); }
+.top:active { transform: scale(0.92); }
+
+/* Anneau de progression de lecture */
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  fill: none;
+  stroke-width: 1.5;
+}
+.ring-track { stroke: var(--line); }
+.ring-value {
+  stroke: var(--earth);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+.chevron {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s var(--ease-out);
+}
+.top:hover .chevron { transform: translateY(-2px); }

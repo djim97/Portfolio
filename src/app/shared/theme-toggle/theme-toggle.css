@@ -1,0 +1,79 @@
+:host { display: inline-flex; }
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--gray);
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease,
+              background-color 0.25s ease, transform 0.3s var(--ease-out);
+}
+.toggle:hover {
+  color: var(--earth);
+  border-color: var(--earth);
+  background: var(--earth-soft);
+  transform: translateY(-1px);
+}
+.toggle:active { transform: scale(0.92); }
+
+.orb {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* Croissant de lune -> disque plein quand le theme clair est actif */
+.disc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: inset 6px -5px 0 0 currentColor;
+  transition: box-shadow 0.45s var(--ease-out), background-color 0.35s ease,
+              transform 0.5s var(--ease-out);
+}
+.is-light .disc {
+  background: currentColor;
+  box-shadow: inset 20px -20px 0 0 transparent;
+  transform: scale(0.6);
+}
+
+/* Rayons : replies dans le disque en sombre, deployes en clair */
+.rays {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: rotate(-40deg) scale(0.4);
+  transition: opacity 0.35s ease, transform 0.55s var(--ease-out);
+}
+.is-light .rays { opacity: 1; transform: rotate(0deg) scale(1); }
+
+.rays i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5px;
+  height: 3.5px;
+  margin: -1.75px 0 0 -0.75px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.rays i:nth-child(1) { transform: rotate(0deg)   translateY(-8px); }
+.rays i:nth-child(2) { transform: rotate(45deg)  translateY(-8px); }
+.rays i:nth-child(3) { transform: rotate(90deg)  translateY(-8px); }
+.rays i:nth-child(4) { transform: rotate(135deg) translateY(-8px); }
+.rays i:nth-child(5) { transform: rotate(180deg) translateY(-8px); }
+.rays i:nth-child(6) { transform: rotate(225deg) translateY(-8px); }
+.rays i:nth-child(7) { transform: rotate(270deg) translateY(-8px); }
+.rays i:nth-child(8) { transform: rotate(315deg) translateY(-8px); }

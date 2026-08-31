@@ -1,4 +1,6 @@
-<article class="card">
+<article class="card" [appSpotlight]="3">
+  <span class="card-glow" aria-hidden="true"></span>
+
   <header class="card-head">
     <h3>{{ project().name }}</h3>
     <span class="meta">{{ project().status }}</span>
@@ -16,13 +18,19 @@
     <div class="card-links">
       @if (project().liveUrl) {
         @if (isInternal(project().liveUrl!)) {
-          <a [routerLink]="project().liveUrl" class="card-link">Ouvrir la démo</a>
+          <a [routerLink]="project().liveUrl" class="card-link">
+            Ouvrir la démo <span class="arrow" aria-hidden="true">→</span>
+          </a>
         } @else {
-          <a [href]="project().liveUrl" target="_blank" rel="noopener" class="card-link">Voir en ligne</a>
+          <a [href]="project().liveUrl" target="_blank" rel="noopener" class="card-link">
+            Voir en ligne <span class="arrow" aria-hidden="true">↗</span>
+          </a>
         }
       }
       @if (project().repoUrl) {
-        <a [href]="project().repoUrl" target="_blank" rel="noopener" class="card-link">Code source</a>
+        <a [href]="project().repoUrl" target="_blank" rel="noopener" class="card-link">
+          Code source <span class="arrow" aria-hidden="true">↗</span>
+        </a>
       }
     </div>
   }

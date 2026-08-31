@@ -1,21 +1,23 @@
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">projets</p>
-    <h2>Ce que j'ai construit</h2>
-    <p class="lead intro">
+    <p class="eyebrow" appReveal>projets</p>
+    <h2 appReveal [revealDelay]="60">Ce que j'ai construit</h2>
+    <p class="lead intro" appReveal [revealDelay]="120">
       Travaux d'école, projets d'équipe et projets personnels. Chaque fiche indique la pile
       technique réellement utilisée.
     </p>
 
     <div class="grid">
       @for (project of projects; track project.slug) {
-        <app-project-card [project]="project" />
+        <app-project-card [project]="project" appReveal [revealDelay]="($index % 3) * 90" />
       }
     </div>
 
-    <p class="outro">
+    <p class="outro" appReveal>
       Mes exercices d'algorithmique et de langage C restent accessibles sur
-      <a [href]="id.github" target="_blank" rel="noopener" class="outro-link">mon GitHub</a>.
+      <a [href]="id.github" target="_blank" rel="noopener" class="outro-link">
+        <app-icon name="github" /> mon GitHub <span class="arrow" aria-hidden="true">↗</span>
+      </a>.
     </p>
   </div>
 </section>

@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Invite de terminal ">_", tracee en chemins : aucune police requise,
+       donc un rendu identique partout et lisible des 16 px. -->
   <rect width="64" height="64" rx="14" fill="#12100E"/>
   <rect x="4" y="4" width="56" height="56" rx="11" fill="none" stroke="#3A2B22" stroke-width="1.5"/>
-  <text x="32" y="42" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="500" fill="#D4642A">db</text>
+  <g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 22 L30 32 L19 42" stroke="#D4642A"/>
+    <path d="M35 42 H45" stroke="#F2EDE4"/>
+  </g>
 </svg>

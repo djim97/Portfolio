@@ -1,4 +1,7 @@
+:host { display: block; height: 100%; }
+
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -7,21 +10,60 @@
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   height: 100%;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: border-color 0.25s ease, background-color 0.25s ease,
+              box-shadow 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
-.card:hover { border-color: var(--line-warm); background: var(--surface-2); }
+.card:hover,
+.card:focus-within {
+  border-color: var(--line-warm);
+  background: var(--surface-2);
+  box-shadow: var(--shadow-lg);
+}
+.card.is-lit {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+             translate3d(0, -5px, 0);
+}
+
+/* Halo qui suit le curseur */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    var(--earth-soft),
+    transparent 62%
+  );
+  transition: opacity 0.35s ease;
+}
+.card.is-lit .card-glow { opacity: 1; }
 
 .card-head {
+  position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
 }
-.card-head h3 { font-size: var(--t-h3); }
+.card-head h3 {
+  font-size: var(--t-h3);
+  transition: color 0.25s ease;
+}
+.card:hover .card-head h3 { color: var(--earth); }
 
-.card-summary { color: var(--gray); font-size: var(--t-small); margin: 0; }
+.card-summary {
+  position: relative;
+  color: var(--gray);
+  font-size: var(--t-small);
+  margin: 0;
+}
 
 .stack {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
@@ -30,12 +72,31 @@
   padding: 0;
 }
 
-.card-links { display: flex; gap: 1.25rem; margin-top: auto; padding-top: 0.5rem; }
+.card-links {
+  position: relative;
+  display: flex;
+  gap: 1.25rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
 
 .card-link {
+  position: relative;
   font-size: var(--t-small);
   font-weight: 500;
   color: var(--earth);
-  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
 }
-.card-link:hover { border-bottom-color: var(--earth); }
+.card-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--earth);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.card-link:hover::after { transform: scaleX(1); }

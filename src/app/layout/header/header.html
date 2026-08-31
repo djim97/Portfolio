@@ -1,24 +1,33 @@
-<header class="bar">
+<header class="bar" [class.is-scrolled]="scrolled()">
   <div class="wrap bar-inner">
     <a routerLink="/" class="mark" (click)="close()">
-      <span class="mark-initials">db</span>
+      <span class="mark-initials">DBB</span>
       <span class="sr-only">Retour à l'accueil</span>
     </a>
 
-    <button
-      class="burger"
-      type="button"
-      [attr.aria-expanded]="open()"
-      aria-controls="nav-principal"
-      aria-label="Ouvrir le menu"
-      (click)="toggle()">
-      <span></span><span></span>
-    </button>
+    <div class="bar-right">
+      <nav id="nav-principal" class="nav" [class.is-open]="open()" aria-label="Navigation principale">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Accueil</a>
+        <a [routerLink]="['/']" fragment="parcours" (click)="close()">Parcours</a>
+        <a routerLink="/projets" routerLinkActive="active" (click)="close()">Projets</a>
+        <a [routerLink]="['/']" fragment="contact" (click)="close()">Contact</a>
+      </nav>
 
-    <nav id="nav-principal" class="nav" [class.is-open]="open()" aria-label="Navigation principale">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Accueil</a>
-      <a routerLink="/projets" routerLinkActive="active" (click)="close()">Projets</a>
-      <a [routerLink]="['/']" fragment="contact" (click)="close()">Contact</a>
-    </nav>
+      <app-theme-toggle />
+
+      <button
+        class="burger"
+        type="button"
+        [class.is-open]="open()"
+        [attr.aria-expanded]="open()"
+        aria-controls="nav-principal"
+        [attr.aria-label]="open() ? 'Fermer le menu' : 'Ouvrir le menu'"
+        (click)="toggle()">
+        <span></span><span></span>
+      </button>
+    </div>
   </div>
+
+  <!-- Avancement de lecture, colle sous la barre -->
+  <span class="progress" aria-hidden="true" [style.transform]="'scaleX(' + progress() + ')'"></span>
 </header>

@@ -1,4 +1,4 @@
-import { Project, SkillGroup } from './models';
+import { Project, SkillGroup, TimelineEntry } from './models';
 
 /**
  * Point d'edition unique du portfolio.
@@ -38,10 +38,45 @@ export const ABOUT: string[] = [
 export const SKILLS: SkillGroup[] = [
   { label: 'Web',            items: ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS'] },
   { label: 'Applications',   items: ['Java', 'JavaFX', 'Hibernate / JPA', 'C', 'C++'] },
-  { label: 'Données',        items: ['PostgreSQL', 'MySQL', 'Oracle', 'SQL'] },
+  { label: 'Données',        items: ['PostgreSQL', 'Oracle'] },
   { label: 'Infrastructure', items: ['Docker', 'GitHub Actions', 'Linux Server', 'Windows Server'] },
-  { label: 'Réseaux',        items: ['CCNA 1', 'VLAN', 'OSPF', 'HSRP', 'EtherChannel'] },
+  { label: 'Réseaux',        items: ['CCNA 1'] },
   { label: 'Outils',         items: ['Git', 'GitHub', 'Figma', 'VS Code', 'IntelliJ IDEA'] },
+];
+
+/**
+ * Parcours, du plus recent au plus ancien.
+ * `period` est optionnel : sans date, la ligne affiche juste le diplome.
+ * A completer : les dates de la licence et de la CPGE, et, si tu veux,
+ * une entree { kind: 'certification' } pour le CCNA 1.
+ */
+export const PARCOURS: TimelineEntry[] = [
+  {
+    period: 'oct. 2025 – oct. 2028',
+    title: "Diplôme d'Ingénieur en Techniques Informatiques",
+    org: "Institut Supérieur d'Informatique (ISI), Dakar",
+    kind: 'formation',
+    details:
+      "Formation d'ingénieur axée sur le développement logiciel, les réseaux " +
+      'informatiques, les bases de données et les systèmes d’information.',
+    current: true,
+  },
+  {
+    period: '',
+    title: 'Licence en Informatique',
+    org: 'Université de Bordeaux',
+    kind: 'formation',
+    details:
+      'Licence générale axée sur les fondamentaux : algorithmique, structures de ' +
+      'données arborescentes, langage C et assembleur, architecture des ordinateurs.',
+  },
+  {
+    period: '',
+    title: 'CPGE Mathématiques, Physique, Informatique',
+    org: "Institut Maristes d'Enseignement Supérieur",
+    kind: 'formation',
+    details: 'Programme post-bac de deux ans en mathématiques, physique et informatique.',
+  },
 ];
 
 export const PROJECTS: Project[] = [

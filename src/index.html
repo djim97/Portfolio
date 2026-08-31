@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Portfolio - Djimouna Bacary BADJI</title>
+  <title>Djimouna Bacary Badji · Portfolio</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Élève ingénieur en 1ère année à l'ISI Dakar. Applications web Angular, applications métier Java, C, C++ et infrastructure réseau. En recherche d'alternance à Dakar.">
@@ -23,6 +23,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Pose le theme et le drapeau "js" avant le premier rendu.
+       Sans ce script : theme sombre, et aucun contenu masque par les animations. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      var theme = 'dark';
+      try {
+        var saved = localStorage.getItem('theme');
+        theme = (saved === 'light' || saved === 'dark')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      } catch (e) { /* stockage indisponible : on garde le sombre */ }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

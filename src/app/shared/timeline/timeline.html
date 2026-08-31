@@ -1,0 +1,28 @@
+<div class="timeline" appScrollProgress>
+  <!-- Rail complet, puis trait d'accent qui se dessine au fil du defilement -->
+  <span class="rail" aria-hidden="true"></span>
+  <span class="rail rail-live" aria-hidden="true"></span>
+
+  <ol class="steps">
+    @for (entry of entries(); track entry.title) {
+      <li class="step" appReveal="left" [revealDelay]="$index * 110">
+        <span class="dot" [class.is-current]="entry.current" aria-hidden="true"></span>
+
+        <div class="step-head">
+          @if (entry.period) {
+            <p class="step-period meta">{{ entry.period }}</p>
+          }
+          <span class="tag step-kind">{{ entry.kind }}</span>
+        </div>
+
+        <h3 class="step-title">{{ entry.title }}</h3>
+        @if (entry.org) {
+          <p class="step-org">{{ entry.org }}</p>
+        }
+        @if (entry.details) {
+          <p class="step-details">{{ entry.details }}</p>
+        }
+      </li>
+    }
+  </ol>
+</div>

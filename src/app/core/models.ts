@@ -13,3 +13,12 @@ export interface SkillGroup {
   label: string;
   items: string[];
 }
+
+export interface TimelineEntry {
+  period?: string;         // 'oct. 2025 – oct. 2028'; masque si absent
+  title: string;           // diplome, poste ou certification
+  org?: string;            // ecole, entreprise ou organisme
+  kind: 'formation' | 'expérience' | 'certification';
+  details?: string;
+  current?: boolean;       // pastille qui pulse sur l'etape en cours
+}

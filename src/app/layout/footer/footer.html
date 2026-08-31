@@ -1,5 +1,18 @@
 <footer class="foot">
   <div class="wrap foot-inner">
-    <span class="meta">{{ year }} — {{ id.name }}</span>
+    <span class="meta">{{ year }} · {{ id.name }}</span>
+    <span class="foot-links">
+      <a [href]="id.github" target="_blank" rel="noopener" class="foot-link">
+        <app-icon name="github" /> GitHub
+      </a>
+      @if (id.linkedin) {
+        <a [href]="id.linkedin" target="_blank" rel="noopener" class="foot-link">
+          <app-icon name="linkedin" /> LinkedIn
+        </a>
+      }
+      <a [href]="'mailto:' + id.email" class="foot-link">
+        <app-icon name="mail" /> Email
+      </a>
+    </span>
   </div>
 </footer>
