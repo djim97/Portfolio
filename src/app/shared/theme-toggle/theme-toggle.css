@@ -9,15 +9,15 @@
   background: none;
   border: 1px solid var(--line);
   border-radius: 10px;
-  color: var(--gray);
+  color: var(--muted);
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease,
-              background-color 0.25s ease, transform 0.3s var(--ease-out);
+              background-color 0.25s ease, transform 0.3s var(--ease);
 }
 .toggle:hover {
-  color: var(--earth);
-  border-color: var(--earth);
-  background: var(--earth-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
   transform: translateY(-1px);
 }
 .toggle:active { transform: scale(0.92); }
@@ -40,8 +40,8 @@
   border-radius: 50%;
   background: transparent;
   box-shadow: inset 6px -5px 0 0 currentColor;
-  transition: box-shadow 0.45s var(--ease-out), background-color 0.35s ease,
-              transform 0.5s var(--ease-out);
+  transition: box-shadow 0.45s var(--ease), background-color 0.35s ease,
+              transform 0.5s var(--ease);
 }
 .is-light .disc {
   background: currentColor;
@@ -55,7 +55,7 @@
   inset: 0;
   opacity: 0;
   transform: rotate(-40deg) scale(0.4);
-  transition: opacity 0.35s ease, transform 0.55s var(--ease-out);
+  transition: opacity 0.35s ease, transform 0.55s var(--ease);
 }
 .is-light .rays { opacity: 1; transform: rotate(0deg) scale(1); }
 

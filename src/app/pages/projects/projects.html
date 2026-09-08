@@ -1,14 +1,14 @@
 <section class="section">
   <div class="wrap">
     <app-section-head label="projets" heading="Ce que j'ai construit" appReveal />
-    <p class="lead intro" appReveal [revealDelay]="60">
+    <p class="lead intro" appReveal [appRevealDelay]="60">
       Travaux d'école, projets d'équipe et projets personnels. Chaque fiche indique la pile
       technique réellement utilisée.
     </p>
 
     <div class="grid">
       @for (project of projects; track project.slug) {
-        <app-project-card [project]="project" appReveal [revealDelay]="($index % 3) * 90" />
+        <app-project-card [project]="project" appReveal [appRevealDelay]="($index % 3) * 90" />
       }
     </div>
 

@@ -15,7 +15,6 @@ export class Header {
   readonly open = signal(false);
   /** La barre se compacte et s'ombre des le premier pixel defile. */
   readonly scrolled = computed(() => this.scroll.y() > 8);
-  readonly progress = computed(() => this.scroll.progress().toFixed(4));
 
   toggle() { this.open.update(v => !v); }
   close() { this.open.set(false); }

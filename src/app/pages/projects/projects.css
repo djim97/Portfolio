@@ -1,4 +1,4 @@
-:host { display: block; animation: page-in 0.5s var(--ease-out) both; }
+:host { display: block; animation: page-in 0.5s var(--ease) both; }
 
 .intro { max-width: 52ch; margin-top: 1rem; }
 
@@ -9,15 +9,15 @@
   margin-top: 2.5rem;
 }
 
-.outro { margin-top: 2.5rem; color: var(--gray); font-size: var(--t-small); }
+.outro { margin-top: 2.5rem; color: var(--muted); font-size: var(--t-small); }
 
 .outro-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--earth);
+  color: var(--accent);
   border-bottom: 1px solid var(--line-warm);
   transition: border-color 0.25s ease;
 }
-.outro-link:hover { border-bottom-color: var(--earth); }
+.outro-link:hover { border-bottom-color: var(--accent); }
 .outro-link:hover .arrow { transform: translateX(3px); }

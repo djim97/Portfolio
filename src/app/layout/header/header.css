@@ -18,8 +18,10 @@
   justify-content: space-between;
   gap: var(--gap);
   min-height: 76px;
-  transition: min-height 0.3s var(--ease-out);
 }
+/* La barre se resserre au defilement, mais sans transition sur la hauteur :
+   animer min-height provoquerait un reflow a chaque frame. Le changement est
+   instantane, seuls la bordure et l'ombre se fondent. */
 .bar.is-scrolled .bar-inner { min-height: 60px; }
 
 .bar-right { display: flex; align-items: center; gap: 1.5rem; }
@@ -28,26 +30,25 @@
 .mark {
   position: relative;
   overflow: hidden;
-  font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--earth);
+  color: var(--accent);
   border: 1px solid var(--line-warm);
   border-radius: 8px;
   padding: 0.35rem 0.6rem;
   line-height: 1;
-  transition: border-color 0.25s ease, color 0.25s ease, transform 0.3s var(--ease-out);
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.3s var(--ease);
 }
 .mark::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--earth);
+  background: var(--accent);
   transform: translateY(101%);
-  transition: transform 0.35s var(--ease-out);
+  transition: transform 0.35s var(--ease);
 }
-.mark:hover { border-color: var(--earth); color: var(--on-accent); transform: translateY(-1px); }
+.mark:hover { border-color: var(--accent); color: var(--on-accent); transform: translateY(-1px); }
 .mark:hover::before { transform: translateY(0); }
 .mark-initials { position: relative; }
 
@@ -57,7 +58,7 @@
 .nav a {
   position: relative;
   font-size: var(--t-small);
-  color: var(--gray);
+  color: var(--muted);
   padding-block: 0.25rem;
   transition: color 0.2s ease;
 }
@@ -68,13 +69,13 @@
   right: 0;
   bottom: 0;
   height: 1px;
-  background: var(--earth);
+  background: var(--accent);
   transform: scaleX(0);
-  transition: transform 0.3s var(--ease-out);
+  transition: transform 0.3s var(--ease);
 }
-.nav a:hover { color: var(--sand); }
+.nav a:hover { color: var(--text); }
 .nav a:hover::after { transform: scaleX(1); }
-.nav a.active { color: var(--sand); }
+.nav a.active { color: var(--text); }
 .nav a.active::after { transform: scaleX(1); }
 
 /* Bouton menu : les deux barres se croisent en X */
@@ -90,30 +91,19 @@
   cursor: pointer;
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
-.burger:hover { border-color: var(--earth); background: var(--earth-soft); }
+.burger:hover { border-color: var(--accent); background: var(--accent-soft); }
 .burger span {
   display: block;
   height: 1.5px;
   width: 18px;
   margin-inline: auto;
-  background: var(--sand);
+  background: var(--text);
   border-radius: 2px;
-  transition: transform 0.35s var(--ease-out), background-color 0.25s ease;
+  transition: transform 0.35s var(--ease), background-color 0.25s ease;
 }
 .burger.is-open span:first-child { transform: translateY(3.25px) rotate(45deg); }
 .burger.is-open span:last-child  { transform: translateY(-3.25px) rotate(-45deg); }
 
-/* Avancement de lecture */
-.progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 2px;
-  background: var(--grad-warm);
-  transform-origin: left;
-  transform: scaleX(0);
-}
 
 @media (max-width: 720px) {
   .burger { display: flex; }
@@ -125,7 +115,7 @@
     top: 100%;
     flex-direction: column;
     gap: 0;
-    background: var(--ink);
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-md);
     padding: 0.5rem clamp(1.25rem, 5vw, 2.5rem) 1.25rem;
@@ -134,7 +124,7 @@
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
-    transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out),
+    transition: opacity 0.28s var(--ease), transform 0.28s var(--ease),
                 visibility 0.28s;
   }
   .nav.is-open {
@@ -150,7 +140,7 @@
     border-bottom: 1px solid var(--line);
     opacity: 0;
     transform: translateY(-6px);
-    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), color 0.2s ease;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), color 0.2s ease;
   }
   .nav.is-open a { opacity: 1; transform: none; }
   .nav.is-open a:nth-child(1) { transition-delay: 0.06s; }

@@ -6,7 +6,7 @@ import { Component, input } from '@angular/core';
  *   01 / à propos ──────────────────────
  *   Qui je suis
  *
- * Le filet se trace quand l'en-tete entre a l'ecran, via la classe `is-in`
+ * Le filet se trace quand l'en-tete entre a l'ecran, via la classe `revealed`
  * posee par appReveal sur l'hote.
  */
 @Component({

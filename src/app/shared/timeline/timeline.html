@@ -5,7 +5,7 @@
 
   <ol class="steps">
     @for (entry of entries(); track entry.title) {
-      <li class="step" appReveal="left" [revealDelay]="$index * 110">
+      <li class="step" appReveal="left" [appRevealDelay]="$index * 110">
         <span class="dot" [class.is-current]="entry.current" aria-hidden="true"></span>
 
         @if (entry.period || showKind()) {

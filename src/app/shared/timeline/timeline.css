@@ -16,7 +16,7 @@
   background: var(--line);
 }
 .rail-live {
-  background: linear-gradient(180deg, var(--earth), var(--earth-lit));
+  background: linear-gradient(180deg, var(--accent), var(--accent-lit));
   transform: scaleY(var(--through, 0));
   transform-origin: top;
 }
@@ -25,7 +25,7 @@
 
 .step {
   position: relative;
-  transition: transform 0.3s var(--ease-out);
+  transition: transform 0.3s var(--ease);
 }
 .step:hover { transform: translateX(4px); }
 
@@ -37,21 +37,21 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--bg);
   border: 1px solid var(--line-warm);
   transition: border-color 0.25s ease, background-color 0.25s ease,
-              transform 0.3s var(--ease-out);
+              transform 0.3s var(--ease);
 }
-.step:hover .dot { border-color: var(--earth); background: var(--earth); transform: scale(1.25); }
+.step:hover .dot { border-color: var(--accent); background: var(--accent); transform: scale(1.25); }
 
 /* L'etape en cours : pastille pleine cerclee d'un anneau fin, sans pulsation */
-.dot.is-current { background: var(--earth); border-color: var(--earth); }
+.dot.is-current { background: var(--accent); border-color: var(--accent); }
 .dot.is-current::after {
   content: '';
   position: absolute;
   inset: -5px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--earth) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .step-head {
@@ -64,28 +64,28 @@
 .step-period { margin: 0; }
 
 .step-kind {
-  color: var(--gray);
+  color: var(--muted);
   border-color: var(--line);
   text-transform: lowercase;
 }
-.step:hover .step-kind { color: var(--earth); border-color: var(--line-warm); }
+.step:hover .step-kind { color: var(--accent); border-color: var(--line-warm); }
 
 .step-title {
   font-size: var(--t-h3);
   transition: color 0.25s ease;
 }
-.step:hover .step-title { color: var(--earth); }
+.step:hover .step-title { color: var(--accent); }
 
 .step-org {
   margin: 0.15rem 0 0;
   font-size: var(--t-small);
-  color: var(--sand);
+  color: var(--text);
 }
 
 .step-details {
   margin: 0.5rem 0 0;
   font-size: var(--t-small);
-  color: var(--gray);
+  color: var(--muted);
   max-width: 60ch;
 }
 
