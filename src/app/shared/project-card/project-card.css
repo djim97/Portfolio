@@ -35,7 +35,7 @@
   opacity: 0;
   background: radial-gradient(
     340px circle at var(--mx, 50%) var(--my, 50%),
-    var(--earth-soft),
+    color-mix(in srgb, var(--earth-lit) 16%, transparent),
     transparent 62%
   );
   transition: opacity 0.35s ease;

@@ -16,7 +16,7 @@
   background: var(--line);
 }
 .rail-live {
-  background: linear-gradient(180deg, var(--earth), var(--lagoon));
+  background: linear-gradient(180deg, var(--earth), var(--earth-lit));
   transform: scaleY(var(--through, 0));
   transform-origin: top;
 }
@@ -45,13 +45,13 @@
 .step:hover .dot { border-color: var(--earth); background: var(--earth); transform: scale(1.25); }
 
 /* L'etape en cours : pastille pleine cerclee d'un anneau fin, sans pulsation */
-.dot.is-current { background: var(--lagoon); border-color: var(--lagoon); }
+.dot.is-current { background: var(--earth); border-color: var(--earth); }
 .dot.is-current::after {
   content: '';
   position: absolute;
   inset: -5px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--lagoon) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--earth) 45%, transparent);
 }
 
 .step-head {

@@ -8,55 +8,66 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --ink:        #12100E;   /* fond principal */
-  --ink-2:      #0C0A09;   /* bandes en retrait */
-  --surface:    #1B1815;   /* cartes, encarts */
-  --surface-2:  #221E1A;   /* survol */
-  --line:       #2B2724;   /* filets, bordures */
-  --line-warm:  #3A2B22;   /* bordures des tags */
-  --sand:       #F2EDE4;   /* texte principal */
-  --gray:       #A69B8C;   /* texte secondaire */
-  --earth:      #D4642A;   /* accent principal */
-  --earth-dim:  #A84D1F;   /* accent au survol */
-  --lagoon:     #4EA791;   /* accent secondaire : statuts, dates */
-  --on-accent:  #12100E;   /* texte pose sur l'accent */
+  --ink:        #111110;   /* fond principal */
+  --ink-2:      #0B0B0A;   /* bandes en retrait */
+  --surface:    #191817;   /* cartes, encarts */
+  --surface-2:  #211F1E;   /* survol */
+  --line:       #2A2827;   /* filets, bordures */
+  --line-warm:  #3C2F27;   /* bordures chaudes */
+  --sand:       #F2EEE8;   /* texte principal */
+  --gray:       #A7A19A;   /* texte secondaire */
+  --earth:      #C96F4A;   /* accent unique */
+  --earth-lit:  #E08A62;   /* terre cuite claire : degrades, decor */
+  --earth-hover:#E08A62;   /* en sombre on eclaircit au survol */
+  --cream:      #E9DED2;   /* creme : fin de degrade, decor */
+  --meta-fg:    #AFA294;   /* statuts, dates : creme assourdie.
+                              La creme pure donne 13,4:1, soit le poids d'un
+                              titre, alors que c'est de la metadonnee. */
+  --on-accent:  #111110;   /* texte pose sur l'accent */
 
-  --dot:        rgba(242, 237, 228, 0.07);
+  --grad-warm:  linear-gradient(90deg, #C96F4A, #E08A62, #E9DED2);
+
+  --dot:        rgba(242, 238, 232, 0.07);
   --sheen:      rgba(255, 255, 255, 0.22);
   --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.45);
   --shadow-md:  0 14px 32px -14px rgba(0, 0, 0, 0.8);
   --shadow-lg:  0 30px 64px -26px rgba(0, 0, 0, 0.9);
-  --aura-opacity: 0.32;
+  --aura-opacity: 0.30;
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --ink:        #FBF7F1;
-  --ink-2:      #F3ECE1;
+  /* Meme famille de teintes, valeurs assombries pour tenir le AA sur fond
+     clair : #C96F4A n'y donne que 3,3:1, insuffisant pour du texte. */
+  --ink:        #FAF7F2;
+  --ink-2:      #F2ECE3;
   --surface:    #FFFFFF;
-  --surface-2:  #FBF4EA;
-  --line:       #E7DCCC;
-  --line-warm:  #E3C6AB;
-  --sand:       #1E1916;
-  --gray:       #6B6055;
-  --earth:      #B85118;
-  --earth-dim:  #99400E;
-  --lagoon:     #1E6B59;
+  --surface-2:  #FAF4EC;
+  --line:       #E6DDD2;
+  --line-warm:  #DEC6B0;
+  --sand:       #1B1917;
+  --gray:       #6A645D;
+  --earth:      #A85535;   /* 4,9:1 sur --ink */
+  --earth-lit:  #C96F4A;   /* la terre cuite de reference, ici decorative */
+  --earth-hover:#8E4526;   /* en clair on assombrit au survol */
+  --cream:      #E9DED2;
+  --meta-fg:    #7A6A5C;   /* brun chaud : la creme serait invisible sur blanc */
   --on-accent:  #FFF8F2;
 
-  --dot:        rgba(30, 25, 22, 0.09);
+  --grad-warm:  linear-gradient(90deg, #A85535, #C96F4A, #E08A62);
+
+  --dot:        rgba(27, 25, 23, 0.09);
   --sheen:      rgba(255, 255, 255, 0.45);
   --shadow-sm:  0 1px 2px rgba(92, 62, 36, 0.10);
   --shadow-md:  0 14px 30px -14px rgba(92, 62, 36, 0.30);
   --shadow-lg:  0 30px 62px -26px rgba(92, 62, 36, 0.36);
-  --aura-opacity: 0.22;
+  --aura-opacity: 0.20;
 }
 
 /* Derives : recalcules tout seuls quand la palette change */
 :root {
   --earth-soft:  color-mix(in srgb, var(--earth) 14%, transparent);
-  --lagoon-soft: color-mix(in srgb, var(--lagoon) 14%, transparent);
   --bar-bg:      color-mix(in srgb, var(--ink) 78%, transparent);
   --halo:        color-mix(in srgb, var(--earth) 30%, transparent);
 
@@ -197,7 +208,7 @@ html.js .eyebrow[data-reveal].is-in::before {
 .btn:active { transform: translateY(0); transition-duration: 0.08s; }
 
 .btn-primary { background: var(--earth); color: var(--on-accent); }
-.btn-primary:hover { background: var(--earth-dim); color: var(--on-accent); }
+.btn-primary:hover { background: var(--earth-hover); color: var(--on-accent); }
 .btn-ghost { border-color: var(--line); color: var(--sand); }
 .btn-ghost:hover { border-color: var(--earth); color: var(--earth); background: var(--earth-soft); }
 
@@ -234,7 +245,7 @@ button:hover > app-icon .icon {
 .meta {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
-  color: var(--lagoon);
+  color: var(--meta-fg);
 }
 
 /* ============================================================
@@ -268,7 +279,7 @@ button:hover > app-icon .icon {
   width: 34vw; height: 34vw;
   max-width: 420px; max-height: 420px;
   top: 26%; right: -4%;
-  background: radial-gradient(circle, var(--lagoon) 0%, transparent 68%);
+  background: radial-gradient(circle, var(--earth-lit) 0%, transparent 68%);
 }
 
 /* Trame de points qui s'estompe vers le bas */

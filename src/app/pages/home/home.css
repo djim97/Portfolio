@@ -60,7 +60,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: var(--lagoon);
+  color: var(--earth);
 }
 /* Carre plein, immobile : le point qui pulse est un tic de gabarit */
 .hero-open::before {
@@ -68,7 +68,7 @@
   width: 6px;
   height: 6px;
   flex: 0 0 auto;
-  background: var(--lagoon);
+  background: var(--earth);
 }
 
 .hero-place { color: var(--gray); }

@@ -110,7 +110,7 @@
   right: 0;
   bottom: -1px;
   height: 2px;
-  background: linear-gradient(90deg, var(--earth), var(--lagoon));
+  background: var(--grad-warm);
   transform-origin: left;
   transform: scaleX(0);
 }
