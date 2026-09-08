@@ -6,8 +6,8 @@ const STORAGE_KEY = 'theme';
 
 /** Couleur de la barre de navigateur, par theme. */
 const BAR_COLOR: Record<Theme, string> = {
-  dark: '#12100E',
-  light: '#FBF7F1',
+  dark: '#0E0D0B',
+  light: '#FAF7F1',
 };
 
 /**

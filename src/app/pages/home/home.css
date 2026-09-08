@@ -1,4 +1,4 @@
-:host { display: block; animation: page-in 0.5s var(--ease-out) both; }
+:host { display: block; animation: page-in 0.5s var(--ease) both; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -16,8 +16,9 @@
   align-items: center;
 }
 
-/* Entree en cascade des blocs du hero */
-.hero-rise { animation: rise 0.8s var(--ease-out) both; animation-delay: var(--d, 0ms); }
+/* Entree en cascade du hero, environ 700ms au total, une seule fois.
+   Les delais sont portes par le CSS : aucune chaine de setTimeout. */
+.hero-rise { animation: rise 600ms var(--ease) both; animation-delay: var(--d, 0ms); }
 
 /* Le nom se compose lettre par lettre */
 .hero-name {
@@ -30,11 +31,11 @@
 .word { display: inline-flex; }
 .char {
   display: inline-block;
-  animation: char-in 0.7s var(--ease-out) both;
-  animation-delay: calc(var(--i) * 32ms + 240ms);
+  animation: char-in 0.7s var(--ease) both;
+  animation-delay: calc(var(--i) * 22ms + 60ms);
   transition: color 0.2s ease;
 }
-.char:hover { color: var(--earth); }
+.char:hover { color: var(--accent); }
 
 .hero-tagline { max-width: 46ch; margin-bottom: 2rem; }
 
@@ -51,7 +52,6 @@
   margin-top: 2.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: 0.08em;
 }
@@ -60,7 +60,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: var(--earth);
+  color: var(--accent);
 }
 /* Carre plein, immobile : le point qui pulse est un tic de gabarit */
 .hero-open::before {
@@ -68,12 +68,20 @@
   width: 6px;
   height: 6px;
   flex: 0 0 auto;
-  background: var(--earth);
+  background: var(--accent);
 }
 
-.hero-place { color: var(--gray); }
+.hero-place { color: var(--muted); }
 
-.hero-photo { margin: 0; }
+/* La photo entre par la droite, a 250ms, comme le reste de la cascade */
+.hero-photo {
+  margin: 0;
+  animation: photo-in 600ms var(--ease) 250ms both;
+}
+@keyframes photo-in {
+  from { opacity: 0; translate: 24px 0; }
+  to   { opacity: 1; translate: none; }
+}
 
 /* La coque porte le parallaxe et l'elevation, l'image reste nette */
 .photo-shell {
@@ -81,7 +89,7 @@
   z-index: 0;
   display: block;
   transform: translate3d(0, calc(var(--parallax, 0px) + var(--lift, 0px)), 0);
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.4s var(--ease);
 }
 .hero-photo:hover .photo-shell { --lift: -6px; }
 
@@ -91,12 +99,12 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  border: 1px solid var(--earth);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-lg);
   transform: translate(14px, 14px);
   opacity: 0.5;
   pointer-events: none;
-  transition: transform 0.45s var(--ease-out), opacity 0.3s ease;
+  transition: transform 0.45s var(--ease), opacity 0.3s ease;
 }
 .hero-photo:hover .photo-shell::after { transform: translate(8px, 8px); opacity: 0.95; }
 
@@ -105,11 +113,16 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
+  max-height: 70vh;
   object-fit: cover;
+  /* Le cadrage remonte : le visage reste centre meme quand la hauteur rogne */
+  object-position: center 20%;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--line);
-  transition: filter 0.4s ease, box-shadow 0.4s var(--ease-out);
+  /* Passe-partout d'un pixel : l'image se lit comme une piece posee,
+     pas comme une balise <img> brute */
+  border: 1px solid var(--surface);
+  transition: filter 0.4s ease, box-shadow 0.4s var(--ease);
 }
 .hero-photo:hover .photo-shell img {
   filter: saturate(1.08) contrast(1.03);
@@ -118,7 +131,9 @@
 
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-photo { order: -1; max-width: 200px; margin-inline: auto; }
+  /* La photo passe sous le texte : au-dessus, elle repoussait le nom
+     hors du premier ecran sur telephone. */
+  .hero-photo { max-width: 320px; margin-inline: auto; }
   .hero-actions { justify-content: center; }
   .hero-meta { justify-content: center; text-align: center; }
 }
@@ -130,7 +145,7 @@
   gap: clamp(1.5rem, 4vw, 3rem);
 }
 
-.about-text p { color: var(--gray); }
+.about-text p { color: var(--muted); }
 
 /* Fiche d'identite en lignes filetees, pas en cartes empilees */
 .facts {
@@ -143,19 +158,18 @@
 .fact {
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--line);
-  transition: transform 0.3s var(--ease-out), border-color 0.25s ease;
+  transition: transform 0.3s var(--ease), border-color 0.25s ease;
 }
 .fact:hover { transform: translateX(6px); border-bottom-color: var(--line-warm); }
 
 .fact dt {
-  font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: 0.1em;
-  color: var(--gray);
+  color: var(--muted);
   margin-bottom: 0.3rem;
 }
 
-.fact dd { margin: 0; font-size: var(--t-small); color: var(--sand); }
+.fact dd { margin: 0; font-size: var(--t-small); color: var(--text); }
 
 /* ---------- Competences ---------- */
 .skills {
@@ -166,11 +180,10 @@
 
 .skill-label {
   position: relative;
-  font-family: var(--font-mono);
   font-size: var(--t-mono);
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--sand);
+  color: var(--text);
   padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--line);
   margin-bottom: 0.8rem;
@@ -183,10 +196,10 @@
   bottom: -1px;
   width: 100%;
   height: 1px;
-  background: var(--earth);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.4s var(--ease);
 }
 .skill-group:hover .skill-label::after { transform: scaleX(1); }
 
@@ -194,8 +207,8 @@
 .skill-items li {
   position: relative;
   font-size: var(--t-small);
-  color: var(--gray);
-  transition: color 0.2s ease, transform 0.25s var(--ease-out);
+  color: var(--muted);
+  transition: color 0.2s ease, transform 0.25s var(--ease);
 }
 .skill-items li::before {
   content: '';
@@ -204,11 +217,11 @@
   top: 0.85em;
   width: 5px;
   height: 1px;
-  background: var(--earth);
+  background: var(--accent);
   opacity: 0;
   transition: opacity 0.25s ease;
 }
-.skill-items li:hover { color: var(--sand); transform: translateX(0.75rem); }
+.skill-items li:hover { color: var(--text); transform: translateX(0.75rem); }
 .skill-items li:hover::before { opacity: 1; }
 
 /* ---------- Projets ---------- */
@@ -227,12 +240,12 @@
   gap: 0.4rem;
   font-size: var(--t-small);
   font-weight: 500;
-  color: var(--earth);
+  color: var(--accent);
   padding-bottom: 2px;
   border-bottom: 1px solid var(--line-warm);
   transition: border-color 0.25s ease;
 }
-.card-more:hover { border-bottom-color: var(--earth); }
+.card-more:hover { border-bottom-color: var(--accent); }
 .card-more:hover .arrow { transform: translateX(4px); }
 
 /* ---------- Contact ---------- */

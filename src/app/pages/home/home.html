@@ -3,7 +3,7 @@
 
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow hero-rise" style="--d: 80ms">{{ id.eyebrow }}</p>
+      <p class="eyebrow hero-rise" style="--d: 0ms">{{ id.eyebrow }}</p>
 
       <h1 class="hero-name">
         <span class="sr-only">{{ id.name }}</span>
@@ -16,9 +16,9 @@
         }
       </h1>
 
-      <p class="hero-tagline lead hero-rise" style="--d: 660ms">{{ id.tagline }}</p>
+      <p class="hero-tagline lead hero-rise" style="--d: 100ms">{{ id.tagline }}</p>
 
-      <div class="hero-actions hero-rise" style="--d: 760ms">
+      <div class="hero-actions hero-rise" style="--d: 200ms">
         <a routerLink="/projets" class="btn btn-primary">
           Voir mes projets <span class="arrow" aria-hidden="true">→</span>
         </a>
@@ -29,15 +29,15 @@
       </div>
 
       <!-- La disponibilite est une information de structure, pas un badge -->
-      <div class="hero-meta hero-rise" style="--d: 860ms">
-        <span class="hero-open">Disponible pour une alternance</span>
+      <div class="hero-meta hero-rise" style="--d: 280ms">
+        <span class="hero-open">{{ id.availability.short }}</span>
         <span class="hero-place">{{ id.location }}</span>
       </div>
     </div>
 
-    <figure class="hero-photo hero-rise" style="--d: 300ms">
+    <figure class="hero-photo">
       <span class="photo-shell" [appParallax]="0.05">
-        <img [src]="id.avatar" [alt]="'Portrait de ' + id.name"
+        <img [src]="id.avatar" alt="Djimouna Bacary Badji"
              width="400" height="500" fetchpriority="high">
       </span>
     </figure>
@@ -50,14 +50,14 @@
     <div class="about">
       <div class="about-text">
         @for (paragraph of about; track $index) {
-          <p appReveal [revealDelay]="$index * 90">{{ paragraph }}</p>
+          <p appReveal [appRevealDelay]="$index * 90">{{ paragraph }}</p>
         }
       </div>
       <dl class="facts">
         <div class="fact" appReveal="right"><dt>Formation</dt><dd>{{ id.program }}</dd></div>
-        <div class="fact" appReveal="right" [revealDelay]="80"><dt>École</dt><dd>{{ id.school }}</dd></div>
-        <div class="fact" appReveal="right" [revealDelay]="160"><dt>Localisation</dt><dd>{{ id.location }}</dd></div>
-        <div class="fact" appReveal="right" [revealDelay]="240"><dt>Disponibilité</dt><dd>Alternance à Dakar</dd></div>
+        <div class="fact" appReveal="right" [appRevealDelay]="80"><dt>École</dt><dd>{{ id.school }}</dd></div>
+        <div class="fact" appReveal="right" [appRevealDelay]="160"><dt>Localisation</dt><dd>{{ id.location }}</dd></div>
+        <div class="fact" appReveal="right" [appRevealDelay]="240"><dt>Disponibilité</dt><dd>Alternance à Dakar</dd></div>
       </dl>
     </div>
   </div>
@@ -75,7 +75,7 @@
     <app-section-head index="03" label="compétences" heading="Ce avec quoi je travaille" appReveal />
     <div class="skills">
       @for (group of skills; track group.label) {
-        <div class="skill-group" appReveal [revealDelay]="$index * 70">
+        <div class="skill-group" appReveal [appRevealDelay]="$index * 70">
           <h3 class="skill-label">{{ group.label }}</h3>
           <ul class="skill-items">
             @for (item of group.items; track item) {
@@ -93,7 +93,7 @@
     <app-section-head index="04" label="projets" heading="Une sélection" appReveal />
     <div class="grid">
       @for (project of featured; track project.slug) {
-        <app-project-card [project]="project" appReveal [revealDelay]="($index % 3) * 90" />
+        <app-project-card [project]="project" appReveal [appRevealDelay]="($index % 3) * 90" />
       }
     </div>
     <p class="more" appReveal>
@@ -108,10 +108,10 @@
   <div class="aura" aria-hidden="true"><span></span><span></span></div>
   <div class="wrap contact-inner">
     <app-section-head index="05" label="contact" heading="Parlons-en" appReveal />
-    <p class="lead" appReveal [revealDelay]="120">
-      Je suis disponible pour une alternance à Dakar. Écrivez-moi, je réponds sous 48 heures.
+    <p class="lead" appReveal [appRevealDelay]="120">
+      {{ id.availability.full }} {{ id.availability.reply }}
     </p>
-    <div class="contact-links" appReveal [revealDelay]="180">
+    <div class="contact-links" appReveal [appRevealDelay]="180">
       <a [href]="'mailto:' + id.email" class="btn btn-primary">
         <app-icon name="mail" />
         {{ id.email }} <span class="arrow" aria-hidden="true">→</span>

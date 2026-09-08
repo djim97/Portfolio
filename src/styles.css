@@ -1,6 +1,6 @@
 /* ============================================================
    Themes : deux palettes, les memes noms de tokens.
-   --ink = fond de page, --sand = texte principal.
+   --bg = fond de page, --text = texte principal.
    Le theme est pose sur <html data-theme="..."> par le script
    inline de index.html, avant le premier rendu (aucun flash).
    ============================================================ */
@@ -8,26 +8,26 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --ink:        #111110;   /* fond principal */
-  --ink-2:      #0B0B0A;   /* bandes en retrait */
-  --surface:    #191817;   /* cartes, encarts */
-  --surface-2:  #211F1E;   /* survol */
-  --line:       #2A2827;   /* filets, bordures */
-  --line-warm:  #3C2F27;   /* bordures chaudes */
-  --sand:       #F2EEE8;   /* texte principal */
-  --gray:       #A7A19A;   /* texte secondaire */
-  --earth:      #C96F4A;   /* accent unique */
-  --earth-lit:  #E08A62;   /* terre cuite claire : degrades, decor */
-  --earth-hover:#E08A62;   /* en sombre on eclaircit au survol */
-  --cream:      #E9DED2;   /* creme : fin de degrade, decor */
-  --meta-fg:    #AFA294;   /* statuts, dates : creme assourdie.
-                              La creme pure donne 13,4:1, soit le poids d'un
-                              titre, alors que c'est de la metadonnee. */
-  --on-accent:  #111110;   /* texte pose sur l'accent */
+  --bg:          #0E0D0B;   /* fond principal */
+  --bg-2:        #090807;   /* bandes en retrait */
+  --surface:     #1A1815;   /* cartes, encarts */
+  --surface-2:   #232019;   /* survol */
+  --line:        #2A2620;   /* filets, bordures */
+  --line-warm:   #3D3225;   /* bordures chaudes */
+  --text:        #ECE7DF;   /* texte principal */
+  --muted:       #9A938A;   /* texte secondaire */
+  --accent:      #E8A04C;   /* accent unique : ambre */
+  --accent-lit:  #F2B667;   /* ambre clair : degrades, decor */
+  --accent-hover:#F2B667;   /* en sombre on eclaircit au survol */
+  --cream:       #F0E4D4;   /* fin de degrade, decor */
+  --meta-fg:     #B0A494;   /* statuts, dates : ambre assourdi.
+                               A pleine clarte, la metadonnee pesait autant
+                               qu'un titre ; ici 7,2:1 contre 14,4:1. */
+  --on-accent:   #0E0D0B;   /* texte pose sur l'accent */
 
-  --grad-warm:  linear-gradient(90deg, #C96F4A, #E08A62, #E9DED2);
+  --grad-warm:  linear-gradient(90deg, #E8A04C, #F2B667, #F0E4D4);
 
-  --dot:        rgba(242, 238, 232, 0.07);
+  --dot:        rgba(236, 231, 223, 0.07);
   --sheen:      rgba(255, 255, 255, 0.22);
   --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.45);
   --shadow-md:  0 14px 32px -14px rgba(0, 0, 0, 0.8);
@@ -38,26 +38,27 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  /* Meme famille de teintes, valeurs assombries pour tenir le AA sur fond
-     clair : #C96F4A n'y donne que 3,3:1, insuffisant pour du texte. */
-  --ink:        #FAF7F2;
-  --ink-2:      #F2ECE3;
-  --surface:    #FFFFFF;
-  --surface-2:  #FAF4EC;
-  --line:       #E6DDD2;
-  --line-warm:  #DEC6B0;
-  --sand:       #1B1917;
-  --gray:       #6A645D;
-  --earth:      #A85535;   /* 4,9:1 sur --ink */
-  --earth-lit:  #C96F4A;   /* la terre cuite de reference, ici decorative */
-  --earth-hover:#8E4526;   /* en clair on assombrit au survol */
-  --cream:      #E9DED2;
-  --meta-fg:    #7A6A5C;   /* brun chaud : la creme serait invisible sur blanc */
-  --on-accent:  #FFF8F2;
+  /* Theme clair derive : la palette du brief est dark-only, et l'ambre
+     #E8A04C ne donne que 2,2:1 sur fond clair. On garde la teinte, on
+     descend la clarte jusqu'a tenir le AA. */
+  --bg:          #FAF7F1;
+  --bg-2:        #F2EBDF;
+  --surface:     #FFFFFF;
+  --surface-2:   #FAF4EA;
+  --line:        #E6DED1;
+  --line-warm:   #DCC9AB;
+  --text:        #1A1714;
+  --muted:       #6B635A;
+  --accent:      #8A5B16;   /* meme teinte que l'ambre, 5,5:1 sur --bg */
+  --accent-lit:  #B07A22;   /* palier intermediaire du degrade */
+  --accent-hover:#6E4710;   /* en clair on assombrit au survol */
+  --cream:       #F0E4D4;
+  --meta-fg:     #7A6A58;   /* l'ambre clair serait invisible sur blanc */
+  --on-accent:   #FFFAF3;
 
-  --grad-warm:  linear-gradient(90deg, #A85535, #C96F4A, #E08A62);
+  --grad-warm:  linear-gradient(90deg, #8A5B16, #B07A22, #E8A04C);
 
-  --dot:        rgba(27, 25, 23, 0.09);
+  --dot:        rgba(26, 23, 20, 0.09);
   --sheen:      rgba(255, 255, 255, 0.45);
   --shadow-sm:  0 1px 2px rgba(92, 62, 36, 0.10);
   --shadow-md:  0 14px 30px -14px rgba(92, 62, 36, 0.30);
@@ -67,9 +68,9 @@
 
 /* Derives : recalcules tout seuls quand la palette change */
 :root {
-  --earth-soft:  color-mix(in srgb, var(--earth) 14%, transparent);
-  --bar-bg:      color-mix(in srgb, var(--ink) 78%, transparent);
-  --halo:        color-mix(in srgb, var(--earth) 30%, transparent);
+  --accent-soft:  color-mix(in srgb, var(--accent) 14%, transparent);
+  --bar-bg:      color-mix(in srgb, var(--bg) 78%, transparent);
+  --halo:        color-mix(in srgb, var(--accent) 30%, transparent);
 
   /* Typographie.
      Bricolage Grotesque a des largeurs irregulieres qui donnent du grain aux
@@ -79,11 +80,11 @@
   --font-body:    'Geist', 'Helvetica Neue', sans-serif;
   --font-mono:    'IBM Plex Mono', 'SFMono-Regular', monospace;
 
-  /* Echelle typographique */
-  --t-hero:  clamp(2.25rem, 6vw, 3.75rem);
-  --t-h2:    clamp(1.5rem, 3.5vw, 2rem);
+  /* Echelle typographique fluide */
+  --t-hero:  clamp(2.5rem, 7vw, 5rem);
+  --t-h2:    clamp(1.75rem, 4vw, 3rem);
   --t-h3:    1.125rem;
-  --t-body:  1rem;
+  --t-body:  clamp(0.95rem, 1.5vw, 1.05rem);
   --t-small: 0.875rem;
   --t-mono:  0.75rem;
 
@@ -96,43 +97,49 @@
   --measure:  62ch;
   --wrap:     1080px;
 
-  /* Mouvement */
-  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Mouvement : une seule courbe pour tout le site */
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:  180ms;   /* survols, navigation */
+  --dur-med:   350ms;   /* changements d'etat */
+  --dur-slow:  500ms;   /* revelations au defilement */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
+html { scroll-behavior: smooth; }
+
+/* Les ancres s'arretent sous l'en-tete collante plutot que dessous.
+   76px de barre au repos, plus une respiration. */
+:where(section[id], [id]:target) { scroll-margin-top: 92px; }
 
 body {
   margin: 0;
-  background: var(--ink);
-  color: var(--sand);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
   font-size: var(--t-body);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background-color 0.4s var(--ease-soft), color 0.4s var(--ease-soft);
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 500;          /* jamais plus lourd que 500 */
   line-height: 1.15;
-  letter-spacing: -0.02em;
   margin: 0;
 }
+/* Le resserrement optique ne vaut qu'a partir de 2rem : applique aux petits
+   titres, il colle les lettres. h3 vaut 1.125rem, il reste donc a l'ecart. */
+h1, h2 { letter-spacing: -0.03em; }
+h3 { letter-spacing: -0.01em; line-height: 1.2; }
 
 p { margin: 0 0 1rem; max-width: var(--measure); }
 
 a { color: inherit; text-decoration: none; }
 
-::selection { background: var(--earth); color: var(--on-accent); }
+::selection { background: var(--accent); color: var(--on-accent); }
 
 /* ============================================================
    Utilitaires partages
@@ -152,12 +159,11 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-mono);
   font-size: var(--t-mono);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: lowercase;
-  color: var(--earth);
+  color: var(--accent);
   margin-bottom: 0.75rem;
 }
 .eyebrow::before {
@@ -165,16 +171,16 @@ a { color: inherit; text-decoration: none; }
   flex: 0 0 auto;
   width: 2.25rem;
   height: 1px;
-  background: linear-gradient(90deg, var(--earth), transparent);
+  background: linear-gradient(90deg, var(--accent), transparent);
   transform-origin: left;
 }
 html.js .eyebrow[data-reveal]::before { transform: scaleX(0); }
-html.js .eyebrow[data-reveal].is-in::before {
+html.js .eyebrow[data-reveal].revealed::before {
   transform: scaleX(1);
-  transition: transform 0.8s var(--ease-out) 0.15s;
+  transition: transform 0.8s var(--ease) 0.15s;
 }
 
-.lead { color: var(--gray); font-size: 1.0625rem; }
+.lead { color: var(--muted); font-size: 1.0625rem; }
 
 .btn {
   position: relative;
@@ -190,8 +196,8 @@ html.js .eyebrow[data-reveal].is-in::before {
   overflow: hidden;
   isolation: isolate;
   transition: background-color 0.18s ease, border-color 0.18s ease,
-              color 0.18s ease, transform 0.25s var(--ease-out),
-              box-shadow 0.25s var(--ease-out);
+              color 0.18s ease, transform 0.25s var(--ease),
+              box-shadow 0.25s var(--ease);
 }
 /* Reflet qui balaie le bouton au survol */
 .btn::after {
@@ -201,19 +207,19 @@ html.js .eyebrow[data-reveal].is-in::before {
   z-index: -1;
   background: linear-gradient(115deg, transparent 32%, var(--sheen) 50%, transparent 68%);
   transform: translateX(-130%);
-  transition: transform 0.65s var(--ease-out);
+  transition: transform 0.65s var(--ease);
 }
 .btn:hover::after { transform: translateX(130%); }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .btn:active { transform: translateY(0); transition-duration: 0.08s; }
 
-.btn-primary { background: var(--earth); color: var(--on-accent); }
-.btn-primary:hover { background: var(--earth-hover); color: var(--on-accent); }
-.btn-ghost { border-color: var(--line); color: var(--sand); }
-.btn-ghost:hover { border-color: var(--earth); color: var(--earth); background: var(--earth-soft); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-hover); color: var(--on-accent); }
+.btn-ghost { border-color: var(--line); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
 /* Fleche qui glisse dans les boutons et les liens */
-.arrow { display: inline-block; transition: transform 0.3s var(--ease-out); }
+.arrow { display: inline-block; transition: transform 0.3s var(--ease); }
 .btn:hover .arrow, .card-link:hover .arrow { transform: translateX(4px); }
 
 /* L'icone se souleve avec le lien ou le bouton qui la porte.
@@ -229,7 +235,7 @@ button:hover > app-icon .icon {
 .tag {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
-  color: var(--gray);
+  color: var(--muted);
   border: 1px solid var(--line);
   padding: 0.2rem 0.6rem;
   border-radius: 3px;
@@ -237,13 +243,12 @@ button:hover > app-icon .icon {
   transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 .tag:hover {
-  color: var(--earth);
+  color: var(--accent);
   border-color: var(--line-warm);
-  background: var(--earth-soft);
+  background: var(--accent-soft);
 }
 
 .meta {
-  font-family: var(--font-mono);
   font-size: var(--t-mono);
   color: var(--meta-fg);
 }
@@ -273,13 +278,13 @@ button:hover > app-icon .icon {
   width: 42vw; height: 42vw;
   max-width: 520px; max-height: 520px;
   top: 2%; left: -6%;
-  background: radial-gradient(circle, var(--earth) 0%, transparent 68%);
+  background: radial-gradient(circle, var(--accent) 0%, transparent 68%);
 }
 .aura span:nth-child(2) {
   width: 34vw; height: 34vw;
   max-width: 420px; max-height: 420px;
   top: 26%; right: -4%;
-  background: radial-gradient(circle, var(--earth-lit) 0%, transparent 68%);
+  background: radial-gradient(circle, var(--accent-lit) 0%, transparent 68%);
 }
 
 /* Trame de points qui s'estompe vers le bas */
@@ -307,19 +312,20 @@ button:hover > app-icon .icon {
    ============================================================ */
 html.js [data-reveal] {
   opacity: 0;
-  translate: 0 26px;
+  translate: 0 24px;
+  /* Le decalage vient de la liaison `transition-delay` de la directive. */
   transition:
-    opacity 0.75s var(--ease-out) var(--reveal-delay, 0ms),
-    translate 0.75s var(--ease-out) var(--reveal-delay, 0ms),
-    scale 0.75s var(--ease-out) var(--reveal-delay, 0ms),
-    filter 0.75s var(--ease-out) var(--reveal-delay, 0ms);
+    opacity var(--dur-slow) var(--ease),
+    translate var(--dur-slow) var(--ease),
+    scale var(--dur-slow) var(--ease),
+    filter var(--dur-slow) var(--ease);
 }
 html.js [data-reveal='left']  { translate: -30px 0; }
 html.js [data-reveal='right'] { translate: 30px 0; }
 html.js [data-reveal='zoom']  { translate: none; scale: 0.94; }
 html.js [data-reveal='blur']  { translate: 0 16px; filter: blur(10px); }
 
-html.js [data-reveal].is-in {
+html.js [data-reveal].revealed {
   opacity: 1;
   translate: none;
   scale: none;
@@ -348,8 +354,8 @@ html.js [data-reveal].is-in {
    Accessibilite
    ============================================================ */
 :focus-visible {
-  outline: 2px solid var(--earth);
-  outline-offset: 3px;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
@@ -357,7 +363,7 @@ html.js [data-reveal].is-in {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--earth);
+  background: var(--accent);
   color: var(--on-accent);
   padding: 0.75rem 1.25rem;
   z-index: 100;
