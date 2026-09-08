@@ -3,12 +3,7 @@
 
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="status-pill hero-rise" style="--d: 60ms">
-        <span class="status-dot" aria-hidden="true"></span>
-        Disponible en alternance
-      </p>
-
-      <p class="eyebrow hero-rise" style="--d: 140ms">{{ id.eyebrow }}</p>
+      <p class="eyebrow hero-rise" style="--d: 80ms">{{ id.eyebrow }}</p>
 
       <h1 class="hero-name">
         <span class="sr-only">{{ id.name }}</span>
@@ -21,9 +16,9 @@
         }
       </h1>
 
-      <p class="hero-tagline lead hero-rise" style="--d: 700ms">{{ id.tagline }}</p>
+      <p class="hero-tagline lead hero-rise" style="--d: 660ms">{{ id.tagline }}</p>
 
-      <div class="hero-actions hero-rise" style="--d: 800ms">
+      <div class="hero-actions hero-rise" style="--d: 760ms">
         <a routerLink="/projets" class="btn btn-primary">
           Voir mes projets <span class="arrow" aria-hidden="true">→</span>
         </a>
@@ -32,9 +27,15 @@
           Télécharger mon CV
         </a>
       </div>
+
+      <!-- La disponibilite est une information de structure, pas un badge -->
+      <div class="hero-meta hero-rise" style="--d: 860ms">
+        <span class="hero-open">Disponible pour une alternance</span>
+        <span class="hero-place">{{ id.location }}</span>
+      </div>
     </div>
 
-    <figure class="hero-photo hero-rise" style="--d: 320ms">
+    <figure class="hero-photo hero-rise" style="--d: 300ms">
       <span class="photo-shell" [appParallax]="0.05">
         <img [src]="id.avatar" [alt]="'Portrait de ' + id.name"
              width="400" height="500" fetchpriority="high">
@@ -43,21 +44,9 @@
   </div>
 </section>
 
-<!-- Bandeau des technologies, en defilement continu -->
-<div class="marquee" aria-hidden="true">
-  @for (pass of [1, 2]; track pass) {
-    <div class="marquee-track">
-      @for (tech of marquee; track tech) {
-        <span class="marquee-item">{{ tech }}</span>
-      }
-    </div>
-  }
-</div>
-
 <section class="section" id="apropos">
   <div class="wrap">
-    <p class="eyebrow" appReveal>à propos</p>
-    <h2 appReveal [revealDelay]="60">Qui je suis</h2>
+    <app-section-head index="01" label="à propos" heading="Qui je suis" appReveal />
     <div class="about">
       <div class="about-text">
         @for (paragraph of about; track $index) {
@@ -76,16 +65,14 @@
 
 <section class="section" id="parcours">
   <div class="wrap">
-    <p class="eyebrow" appReveal>parcours</p>
-    <h2 appReveal [revealDelay]="60">Ce qui m'a mené ici</h2>
+    <app-section-head index="02" label="parcours" heading="Ce qui m'a mené ici" appReveal />
     <app-timeline [entries]="parcours" />
   </div>
 </section>
 
 <section class="section" id="competences">
   <div class="wrap">
-    <p class="eyebrow" appReveal>compétences</p>
-    <h2 appReveal [revealDelay]="60">Ce avec quoi je travaille</h2>
+    <app-section-head index="03" label="compétences" heading="Ce avec quoi je travaille" appReveal />
     <div class="skills">
       @for (group of skills; track group.label) {
         <div class="skill-group" appReveal [revealDelay]="$index * 70">
@@ -103,8 +90,7 @@
 
 <section class="section" id="projets">
   <div class="wrap">
-    <p class="eyebrow" appReveal>projets</p>
-    <h2 appReveal [revealDelay]="60">Une sélection</h2>
+    <app-section-head index="04" label="projets" heading="Une sélection" appReveal />
     <div class="grid">
       @for (project of featured; track project.slug) {
         <app-project-card [project]="project" appReveal [revealDelay]="($index % 3) * 90" />
@@ -121,8 +107,7 @@
 <section class="section contact dotted" id="contact">
   <div class="aura" aria-hidden="true"><span></span><span></span></div>
   <div class="wrap contact-inner">
-    <p class="eyebrow" appReveal>contact</p>
-    <h2 appReveal [revealDelay]="60">Parlons-en</h2>
+    <app-section-head index="05" label="contact" heading="Parlons-en" appReveal />
     <p class="lead" appReveal [revealDelay]="120">
       Je suis disponible pour une alternance à Dakar. Écrivez-moi, je réponds sous 48 heures.
     </p>

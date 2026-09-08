@@ -44,15 +44,14 @@
 }
 .step:hover .dot { border-color: var(--earth); background: var(--earth); transform: scale(1.25); }
 
-/* L'etape en cours pulse, comme la pastille de disponibilite */
+/* L'etape en cours : pastille pleine cerclee d'un anneau fin, sans pulsation */
 .dot.is-current { background: var(--lagoon); border-color: var(--lagoon); }
 .dot.is-current::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -5px;
   border-radius: 50%;
-  background: var(--lagoon);
-  animation: ping 2.6s var(--ease-out) infinite;
+  border: 1px solid color-mix(in srgb, var(--lagoon) 45%, transparent);
 }
 
 .step-head {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectCard } from '../../shared/project-card/project-card';
 import { Icon } from '../../shared/icon/icon';
+import { SectionHead } from '../../shared/section-head/section-head';
 import { Timeline } from '../../shared/timeline/timeline';
 import { Parallax } from '../../shared/motion/parallax';
 import { Reveal } from '../../shared/motion/reveal';
@@ -18,7 +19,7 @@ function splitName(name: string) {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ProjectCard, Icon, Timeline, Reveal, Parallax],
+  imports: [RouterLink, ProjectCard, Icon, SectionHead, Timeline, Reveal, Parallax],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -30,6 +31,4 @@ export class Home {
   readonly featured = PROJECTS.filter(p => p.featured);
 
   readonly nameWords = splitName(IDENTITY.name);
-  /** Bandeau defilant : toutes les technologies, dans l'ordre des groupes. */
-  readonly marquee = SKILLS.flatMap(group => group.items);
 }

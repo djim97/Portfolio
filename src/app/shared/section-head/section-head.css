@@ -1,0 +1,40 @@
+:host { display: block; margin-bottom: 2.75rem; }
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.15rem;
+}
+
+.index,
+.slash,
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.index { color: var(--sand); }
+.slash { color: var(--line-warm); }
+.label { color: var(--earth); text-transform: lowercase; }
+
+/* Le filet occupe la largeur restante et se trace a l'apparition */
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s var(--ease-out) 0.12s;
+}
+:host(.is-in) .line { transform: scaleX(1); }
+/* Sans JavaScript, rien ne pose `is-in` : le filet doit rester visible. */
+html:not(.js) .line { transform: scaleX(1); }
+
+.heading {
+  font-size: var(--t-h2);
+  max-width: 24ch;
+}

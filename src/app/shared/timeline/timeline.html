@@ -8,12 +8,16 @@
       <li class="step" appReveal="left" [revealDelay]="$index * 110">
         <span class="dot" [class.is-current]="entry.current" aria-hidden="true"></span>
 
-        <div class="step-head">
-          @if (entry.period) {
-            <p class="step-period meta">{{ entry.period }}</p>
-          }
-          <span class="tag step-kind">{{ entry.kind }}</span>
-        </div>
+        @if (entry.period || showKind()) {
+          <div class="step-head">
+            @if (entry.period) {
+              <p class="step-period meta">{{ entry.period }}</p>
+            }
+            @if (showKind()) {
+              <span class="tag step-kind">{{ entry.kind }}</span>
+            }
+          </div>
+        }
 
         <h3 class="step-title">{{ entry.title }}</h3>
         @if (entry.org) {

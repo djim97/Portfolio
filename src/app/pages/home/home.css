@@ -19,8 +19,6 @@
 /* Entree en cascade des blocs du hero */
 .hero-rise { animation: rise 0.8s var(--ease-out) both; animation-delay: var(--d, 0ms); }
 
-.status-pill { margin-bottom: 1.1rem; }
-
 /* Le nom se compose lettre par lettre */
 .hero-name {
   display: flex;
@@ -33,7 +31,7 @@
 .char {
   display: inline-block;
   animation: char-in 0.7s var(--ease-out) both;
-  animation-delay: calc(var(--i) * 32ms + 260ms);
+  animation-delay: calc(var(--i) * 32ms + 240ms);
   transition: color 0.2s ease;
 }
 .char:hover { color: var(--earth); }
@@ -41,6 +39,39 @@
 .hero-tagline { max-width: 46ch; margin-bottom: 2rem; }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Ligne de metadonnees sous les actions : un filet et deux mentions,
+   plutot qu'une pastille coloree. */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.08em;
+}
+
+.hero-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--lagoon);
+}
+/* Carre plein, immobile : le point qui pulse est un tic de gabarit */
+.hero-open::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  background: var(--lagoon);
+}
+
+.hero-place { color: var(--gray); }
 
 .hero-photo { margin: 0; }
 
@@ -88,11 +119,8 @@
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-photo { order: -1; max-width: 200px; margin-inline: auto; }
-
-  /* La pastille est en inline-flex : il faut la passer en bloc de la largeur
-     de son contenu pour que les marges auto la centrent. */
-  .status-pill { display: flex; width: fit-content; margin-inline: auto; }
   .hero-actions { justify-content: center; }
+  .hero-meta { justify-content: center; text-align: center; }
 }
 
 /* ---------- A propos ---------- */
@@ -100,60 +128,40 @@
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: 2rem;
 }
 
 .about-text p { color: var(--gray); }
 
-.facts { margin: 0; display: grid; gap: 0.75rem; align-content: start; }
+/* Fiche d'identite en lignes filetees, pas en cartes empilees */
+.facts {
+  margin: 0;
+  display: grid;
+  align-content: start;
+  border-top: 1px solid var(--line);
+}
 
 .fact {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 0.9rem 1.1rem;
-  transition: transform 0.3s var(--ease-out), border-color 0.25s ease,
-              background-color 0.25s ease, box-shadow 0.3s var(--ease-out);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: transform 0.3s var(--ease-out), border-color 0.25s ease;
 }
-/* Liseré qui se remplit de haut en bas */
-.fact::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--earth);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.35s var(--ease-out);
-}
-.fact:hover {
-  transform: translateX(-5px);
-  border-color: var(--line-warm);
-  background: var(--surface-2);
-  box-shadow: var(--shadow-md);
-}
-.fact:hover::before { transform: scaleY(1); }
+.fact:hover { transform: translateX(6px); border-bottom-color: var(--line-warm); }
 
 .fact dt {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
-  letter-spacing: 0.08em;
-  color: var(--earth);
-  margin-bottom: 0.2rem;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 0.3rem;
 }
 
-.fact dd { margin: 0; font-size: var(--t-small); }
+.fact dd { margin: 0; font-size: var(--t-small); color: var(--sand); }
 
 /* ---------- Competences ---------- */
 .skills {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1.5rem 2rem;
-  margin-top: 2rem;
+  gap: 1.75rem 2rem;
 }
 
 .skill-label {
@@ -162,10 +170,10 @@
   font-size: var(--t-mono);
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--earth);
+  color: var(--sand);
   padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.8rem;
 }
 /* Le filet du groupe se colore au survol */
 .skill-label::after {
@@ -182,7 +190,7 @@
 }
 .skill-group:hover .skill-label::after { transform: scaleX(1); }
 
-.skill-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; }
+.skill-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
 .skill-items li {
   position: relative;
   font-size: var(--t-small);
@@ -208,7 +216,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1.25rem;
-  margin-top: 2rem;
 }
 
 .more { margin-top: 2rem; }

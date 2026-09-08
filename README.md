@@ -14,8 +14,8 @@ administration réseaux, systèmes et bases de données.
 fichier HTML par route au moment du build. Le site sert donc du vrai contenu aux
 moteurs de recherche et aux aperçus de liens, sans exiger de serveur applicatif.
 
-**Contenu séparé du code.** Tout le contenu éditable — identité, parcours,
-compétences, projets — est regroupé dans `src/app/core/profile.data.ts`. Ajouter
+**Contenu séparé du code.** Tout le contenu éditable (identité, parcours,
+compétences, projets) est regroupé dans `src/app/core/profile.data.ts`. Ajouter
 un projet consiste à ajouter un objet à un tableau, sans ouvrir un composant.
 
 **Pas de dépendance à un backend.** Le portfolio est entièrement statique. Le
@@ -83,11 +83,11 @@ netlify.toml            commande de build et en-têtes
 
 Tout est dans `src/app/core/profile.data.ts` :
 
-- `IDENTITY` — nom, accroche, liens, CV, photo
-- `ABOUT` — paragraphes de présentation
-- `PARCOURS` — frise du parcours ; `period` est optionnel
-- `SKILLS` — groupes de compétences, aussi utilisés par le bandeau défilant
-- `PROJECTS` — cartes projets ; `featured: true` les remonte sur l'accueil
+- `IDENTITY` : nom, accroche, liens, CV, photo
+- `ABOUT` : paragraphes de présentation
+- `PARCOURS` : frise du parcours ; `period` est optionnel
+- `SKILLS` : groupes de compétences
+- `PROJECTS` : cartes projets ; `featured: true` les remonte sur l'accueil
 
 ## Démarrer
 
