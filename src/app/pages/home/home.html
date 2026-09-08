@@ -20,7 +20,7 @@
 
       <div class="hero-actions hero-rise" style="--d: 200ms">
         <a routerLink="/projets" class="btn btn-primary">
-          Voir mes projets <span class="arrow" aria-hidden="true">→</span>
+          Voir mes projets <span class="arrow" aria-hidden="true"><app-icon name="arrow-right" /></span>
         </a>
         <a [href]="id.cvUrl" class="btn btn-ghost" download>
           <app-icon name="download" />
@@ -98,7 +98,7 @@
     </div>
     <p class="more" appReveal>
       <a routerLink="/projets" class="card-more">
-        Voir tous les projets <span class="arrow" aria-hidden="true">→</span>
+        Voir tous les projets <span class="arrow" aria-hidden="true"><app-icon name="arrow-right" /></span>
       </a>
     </p>
   </div>
@@ -114,16 +114,16 @@
     <div class="contact-links" appReveal [appRevealDelay]="180">
       <a [href]="'mailto:' + id.email" class="btn btn-primary">
         <app-icon name="mail" />
-        {{ id.email }} <span class="arrow" aria-hidden="true">→</span>
+        {{ id.email }} <span class="arrow" aria-hidden="true"><app-icon name="arrow-right" /></span>
       </a>
       <a [href]="id.github" target="_blank" rel="noopener" class="btn btn-ghost">
         <app-icon name="github" />
-        GitHub <span class="arrow" aria-hidden="true">↗</span>
+        GitHub <span class="arrow" aria-hidden="true"><app-icon name="arrow-out" /></span>
       </a>
       @if (id.linkedin) {
         <a [href]="id.linkedin" target="_blank" rel="noopener" class="btn btn-ghost">
           <app-icon name="linkedin" />
-          LinkedIn <span class="arrow" aria-hidden="true">↗</span>
+          LinkedIn <span class="arrow" aria-hidden="true"><app-icon name="arrow-out" /></span>
         </a>
       }
     </div>

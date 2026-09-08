@@ -218,8 +218,15 @@ html.js .eyebrow[data-reveal].revealed::before {
 .btn-ghost { border-color: var(--line); color: var(--text); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
-/* Fleche qui glisse dans les boutons et les liens */
-.arrow { display: inline-block; transition: transform 0.3s var(--ease); }
+/* Fleche qui glisse dans les boutons et les liens.
+   Les fleches sont des SVG et non des caracteres : iOS rend U+2197 en
+   emoji couleur par defaut, ce qui cassait le rendu monochrome. */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  transition: transform 0.3s var(--ease);
+}
 .btn:hover .arrow, .card-link:hover .arrow { transform: translateX(4px); }
 
 /* L'icone se souleve avec le lien ou le bouton qui la porte.

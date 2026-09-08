@@ -2,10 +2,11 @@ import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../core/models';
 import { Spotlight } from '../motion/spotlight';
+import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'app-project-card',
-  imports: [RouterLink, Spotlight],
+  imports: [RouterLink, Spotlight, Icon],
   templateUrl: './project-card.html',
   styleUrl: './project-card.css',
 })

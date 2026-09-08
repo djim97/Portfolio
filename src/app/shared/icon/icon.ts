@@ -1,6 +1,12 @@
 import { Component, input } from '@angular/core';
 
-export type IconName = 'github' | 'linkedin' | 'mail' | 'download';
+export type IconName =
+  | 'github'
+  | 'linkedin'
+  | 'mail'
+  | 'download'
+  | 'arrow-right'
+  | 'arrow-out';
 
 /**
  * Petites icones inline : pas de police ni de librairie externe.
