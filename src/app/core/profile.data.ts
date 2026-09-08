@@ -11,6 +11,18 @@ export const IDENTITY = {
   eyebrow: 'ingénierie logicielle / dakar',
   tagline:
     "Je conçois des solutions numériques sur mesure pour répondre à des besoins concrets et créer des expériences efficaces et intuitives.",
+  /**
+   * Une seule mention de disponibilite, declinee selon la place offerte.
+   * `short` omet le lieu : la ligne du hero l'affiche juste a cote.
+   * `seo` est compacte pour survivre a la troncature de Google, vers
+   * 155 caracteres.
+   */
+  availability: {
+    short: 'Disponible pour une alternance',
+    full: 'Je suis disponible pour une alternance à Dakar.',
+    seo: 'Alternance à Dakar.',
+    reply: 'Écrivez-moi, je réponds sous 48 heures.',
+  },
   location: 'Dakar, Sénégal',
   school: "Institut Supérieur d'Informatique (ISI), Dakar",
   program: "Diplôme d'Ingénieur en Techniques Informatiques",
@@ -21,13 +33,19 @@ export const IDENTITY = {
   avatar: '/photo.jpg',
 };
 
+/** Description des apercus sociaux : Open Graph, LinkedIn, WhatsApp. */
+export const SHARE_DESCRIPTION = `${IDENTITY.tagline} ${IDENTITY.availability.full}`;
+
+/** Description des resultats de recherche, raccourcie pour tenir dans l'extrait. */
+export const SEARCH_DESCRIPTION = `${IDENTITY.tagline} ${IDENTITY.availability.seo}`;
+
 export const ABOUT: string[] = [
   "Je suis en première année du cycle ingénieur en techniques informatiques à l'ISI, " +
     'une formation centrée sur le génie logiciel, les systèmes d’information, l’administration ' +
     'systèmes, réseaux et bases de données.',
   "Concrètement, je passe l'essentiel de mon temps sur du développement web avec Angular " +
     'et sur des applications métier en Java, C, C++. Je travaille aussi régulièrement sur ' +
-    'l’infrastructure : Configuration equipements réseaux Cisco, administration de ' +
+    'l’infrastructure : Configuration équipements réseaux Cisco, administration de ' +
     'serveurs Linux, gestion de l\'Active Directory sur Windows server, conteneurs et chaînes ' +
     'de déploiement automatisées.',
   'Je cherche une alternance à Dakar où je peux contribuer à un produit réel et ' +
@@ -38,8 +56,7 @@ export const SKILLS: SkillGroup[] = [
   { label: 'Web',            items: ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS'] },
   { label: 'Applications',   items: ['Java', 'JavaFX', 'Hibernate / JPA', 'C', 'C++'] },
   { label: 'Données',        items: ['PostgreSQL', 'Oracle'] },
-  { label: 'Infrastructure', items: ['Docker', 'GitHub Actions', 'Linux Server', 'Windows Server'] },
-  { label: 'Réseaux',        items: ['CCNA 1'] },
+  { label: 'Infrastructure', items: ['Docker', 'GitHub Actions', 'Linux Server', 'Active Directory', 'Equipements Cisco'] },
   { label: 'Outils',         items: ['Git', 'GitHub', 'Figma', 'VS Code', 'IntelliJ IDEA'] },
 ];
 
