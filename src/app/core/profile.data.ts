@@ -10,9 +10,7 @@ export const IDENTITY = {
   role: 'Élève ingénieur en informatique',
   eyebrow: 'ingénierie logicielle / dakar',
   tagline:
-    "1ᵉʳᵉ année du cycle ingénieur à l'ISI. Je construis des applications web Angular, " +
-    'des applications métier Java, C, C++ et des infrastructures réseau. En recherche ' +
-    "d'alternance à Dakar.",
+    "Je conçois des solutions numériques sur mesure pour répondre à des besoins concrets et créer des expériences efficaces et intuitives.",
   location: 'Dakar, Sénégal',
   school: "Institut Supérieur d'Informatique (ISI), Dakar",
   program: "Diplôme d'Ingénieur en Techniques Informatiques",
@@ -26,10 +24,11 @@ export const IDENTITY = {
 export const ABOUT: string[] = [
   "Je suis en première année du cycle ingénieur en techniques informatiques à l'ISI, " +
     'une formation centrée sur le génie logiciel, les systèmes d’information, l’administration ' +
-    'réseaux, systèmes et bases de données.',
+    'systèmes, réseaux et bases de données.',
   "Concrètement, je passe l'essentiel de mon temps sur du développement web avec Angular " +
     'et sur des applications métier en Java, C, C++. Je travaille aussi régulièrement sur ' +
-    'l’infrastructure : réseaux Cisco, serveurs Linux et Windows, conteneurs et chaînes ' +
+    'l’infrastructure : Configuration equipements réseaux Cisco, administration de ' +
+    'serveurs Linux, gestion de l\'Active Directory sur Windows server, conteneurs et chaînes ' +
     'de déploiement automatisées.',
   'Je cherche une alternance à Dakar où je peux contribuer à un produit réel et ' +
     'apprendre au contact d’une équipe.',
